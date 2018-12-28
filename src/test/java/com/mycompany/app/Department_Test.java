@@ -4,7 +4,10 @@ import com.mycompany.entity.Department;
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
 import com.mycompany.entity.Job;
+import com.mycompany.exceptions.JobAlreadyInListException;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,6 +15,9 @@ import java.util.Collections;
 import static org.junit.Assert.assertEquals;
 
 public class Department_Test {
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void TEST_createDepartmentConstructor1(){
@@ -76,10 +82,20 @@ public class Department_Test {
         assert constructionDepartment.getJobList().contains(constructionJob);
         assert treasuryDepartment.getJobList().contains(treasuryJob);
     }
+    
+    @Test
+    public void TEST_throwJobAlreadyInListException(){
+        Department constructionDepartment = new Department(DepartmentType.Construction);
+        Job constructionJob = new Job(10, "construction",4000, 5000,DepartmentType.Construction);
 
-    // TODO: Throw JobAlreadyInListException test
+        expectedException.expect(JobAlreadyInListException.class);
+        expectedException.expectMessage("Job " + constructionJob + " already in jobs list for " + constructionDepartment.getDepartmentType() + " department.");
+
+        constructionDepartment.addJobToJobList(constructionJob);
+        constructionDepartment.addJobToJobList(constructionJob);
+
+    }
 
     // TODO: Throw DifferentDepartmentTypeException test
-
 
 }

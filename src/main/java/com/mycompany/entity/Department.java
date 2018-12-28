@@ -31,7 +31,7 @@ public class Department {
     public void addJobToJobList(Job job) throws JobAlreadyInListException, DifferentDepartmentTypeException{
         if (jobList.contains(job)){
             throw new JobAlreadyInListException
-                    ("Job " + job + "already in jobs list for " + this.departmentType + " department.");
+                    ("Job " + job + " already in jobs list for " + this.departmentType + " department.");
         } else {
             if (!(job.getDepartmentType().equals(this.departmentType))){
                 throw new DifferentDepartmentTypeException
