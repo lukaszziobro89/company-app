@@ -4,6 +4,7 @@ import com.mycompany.entity.Department;
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
 import com.mycompany.entity.Job;
+import com.mycompany.exceptions.DifferentDepartmentTypeException;
 import com.mycompany.exceptions.JobAlreadyInListException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -82,7 +83,7 @@ public class Department_Test {
         assert constructionDepartment.getJobList().contains(constructionJob);
         assert treasuryDepartment.getJobList().contains(treasuryJob);
     }
-    
+
     @Test
     public void TEST_throwJobAlreadyInListException(){
         Department constructionDepartment = new Department(DepartmentType.Construction);
@@ -93,9 +94,15 @@ public class Department_Test {
 
         constructionDepartment.addJobToJobList(constructionJob);
         constructionDepartment.addJobToJobList(constructionJob);
-
     }
 
-    // TODO: Throw DifferentDepartmentTypeException test
+    @Test
+    public void TEST_throwDifferentDepartmentTypeException(){
+        Department payrollDepartment = new Department(DepartmentType.Payroll);
+        Job treasuryJob = new Job(10, "treasury", 4000,5000, DepartmentType.Treasury);
+        expectedException.expect(DifferentDepartmentTypeException.class);
+        expectedException.expectMessage("Attempt to add job to " + payrollDepartment.getDepartmentType() + " department, when job is assigned to " + treasuryJob.getDepartmentType() + " department");
+        payrollDepartment.addJobToJobList(treasuryJob);
+    }
 
 }
