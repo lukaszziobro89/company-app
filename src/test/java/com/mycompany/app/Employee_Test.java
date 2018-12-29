@@ -2,6 +2,7 @@ package com.mycompany.app;
 
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
+import com.mycompany.entity.Job;
 import com.mycompany.exceptions.AgeException;
 import com.mycompany.exceptions.NegativeSalaryException;
 import com.mycompany.exceptions.SalaryNotInRangeException;
@@ -125,13 +126,31 @@ public class Employee_Test {
     }
 
     @Test
-    public void TEST_throwUnderSalaryNotInRangeExceptionInConstructor(){
-        // TODO: test to be written
+    public void TEST_throwSalaryNotInRangeExceptionUnderInConstructor(){
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Salary 2000.0 is under global min salary: " + Job.globalMinSalary);
+        Employee employee = new Employee(
+                "TestName",
+                "TestSurname",
+                23,
+                2000,
+                "mail@mail.com",
+                DepartmentType.IT,
+                Collections.singletonList("English"));
     }
 
     @Test
-    public void TEST_throwOverSalaryNotInRangeExceptionInConstructor(){
-        // TODO: test to be written
+    public void TEST_throwSalaryNotInRangeExceptionOverInConstructor(){
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Salary 21000.0 exceeds global max salary: " + Job.globalMaxSalary);
+        Employee employee = new Employee(
+                "TestName",
+                "TestSurname",
+                23,
+                21000,
+                "mail@mail.com",
+                DepartmentType.IT,
+                Collections.singletonList("English"));
     }
 
     @Test
