@@ -162,7 +162,10 @@ public class Employee_Test {
 
     @Test
     public void TEST_throwsNegativeSalaryExceptionInSetSalary(){
-        // TODO: test to be written
+        assertEquals(5000, employeeTester.getSalary(),0);
+        expectedException.expect(NegativeSalaryException.class);
+        expectedException.expectMessage("Salary cannot be negative.");
+        employeeTester.setSalary(-1000);
     }
 
     @Test
