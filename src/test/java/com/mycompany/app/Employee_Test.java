@@ -170,7 +170,10 @@ public class Employee_Test {
 
     @Test
     public void TEST_throwUnderSalaryNotInRageExceptionInSetter(){
-        // TODO: test to be written
+        assertEquals(5000, employeeTester.getSalary(),0);
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Salary 2000.0 is under global min salary: " + Job.globalMinSalary);
+        employeeTester.setSalary(2000);
     }
 
     @Test
