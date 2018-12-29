@@ -2,6 +2,7 @@ package com.mycompany.app;
 
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
+import com.mycompany.entity.Job;
 import com.mycompany.exceptions.AgeException;
 import com.mycompany.exceptions.ChangeSalaryException;
 import com.mycompany.exceptions.NegativeSalaryException;
@@ -136,6 +137,22 @@ public class Employee_Test {
         expectedException.expect(ChangeSalaryException.class);
         expectedException.expectMessage("Raise amount must be greater then 0.");
         employeeTester.increaseSalary(-1000);
+    }
+
+    @Test
+    public void TEST_throwExceedsChangeSalaryException(){
+        Employee employee = new Employee(
+                "TestName",
+                "TestSurname",
+                23,
+                15000,
+                "mail@mail.com",
+                DepartmentType.IT,
+                Collections.singletonList("English"));
+
+        expectedException.expect(ChangeSalaryException.class);
+        expectedException.expectMessage("Raising salary: 15000.0 + 6000.0 = 21000.0 exceeds global company max salary 20000.0");
+        employee.increaseSalary(6000);
     }
 
     @Test
