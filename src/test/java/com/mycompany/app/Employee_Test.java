@@ -2,10 +2,9 @@ package com.mycompany.app;
 
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
-import com.mycompany.entity.Job;
 import com.mycompany.exceptions.AgeException;
-import com.mycompany.exceptions.ChangeSalaryException;
 import com.mycompany.exceptions.NegativeSalaryException;
+import com.mycompany.exceptions.SalaryNotInRangeException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -20,7 +19,7 @@ public class Employee_Test {
             "FirstName",
             "LastName",
             25,
-            3000,
+            5000,
             "email@email.com",
             DepartmentType.Executive,
             Arrays.asList("English", "Spanish")
@@ -35,7 +34,7 @@ public class Employee_Test {
                     "TestName",
                     "TestSurname",
                     23,
-                    2000,
+                    4000,
                     "mail@mail.com",
                     DepartmentType.IT,
                     Collections.singletonList("English"));
@@ -98,7 +97,7 @@ public class Employee_Test {
     }
 
     @Test
-    public void TEST_throwEmployeeAgeException(){
+    public void TEST_throwEmployeeAgeExceptionInConstructor(){
         expectedException.expect(AgeException.class);
         expectedException.expectMessage("Age cannot be negative or zero.");
             Employee employee = new Employee(
@@ -112,7 +111,7 @@ public class Employee_Test {
     }
 
     @Test
-    public void TEST_throwEmployeeSalaryException(){
+    public void TEST_throwEmployeeSalaryExceptionInConstructor(){
         expectedException.expect(NegativeSalaryException.class);
         expectedException.expectMessage("Salary cannot be negative.");
         Employee employee = new Employee(
@@ -126,15 +125,40 @@ public class Employee_Test {
     }
 
     @Test
+    public void TEST_throwUnderSalaryNotInRangeExceptionInConstructor(){
+        // TODO: test to be written
+    }
+
+    @Test
+    public void TEST_throwOverSalaryNotInRangeExceptionInConstructor(){
+        // TODO: test to be written
+    }
+
+    @Test
+    public void TEST_setSalary(){
+        // TODO: test to be written
+    }
+
+    @Test
+    public void TEST_throwUnderSalaryNotInRageExeceptionInSetter(){
+        // TODO: test to be written
+    }
+
+    @Test
+    public void TEST_throwOverSalaryNotInRangeExeceptionInSetter(){
+        // TODO: test to be written
+    }
+
+    @Test
     public void TEST_increaseSalary(){
-        assertEquals(3000, employeeTester.getSalary(), 0);
+        assertEquals(5000, employeeTester.getSalary(), 0);
         employeeTester.increaseSalary(1000);
-        assertEquals(4000, employeeTester.getSalary(), 0);
+        assertEquals(6000, employeeTester.getSalary(), 0);
     }
 
     @Test
     public void TEST_throwIncreaseChangeSalaryException(){
-        expectedException.expect(ChangeSalaryException.class);
+        expectedException.expect(NegativeSalaryException.class);
         expectedException.expectMessage("Raise amount must be greater then 0.");
         employeeTester.increaseSalary(-1000);
     }
@@ -150,21 +174,29 @@ public class Employee_Test {
                 DepartmentType.IT,
                 Collections.singletonList("English"));
 
-        expectedException.expect(ChangeSalaryException.class);
+        expectedException.expect(SalaryNotInRangeException.class);
         expectedException.expectMessage("Raising salary: 15000.0 + 6000.0 = 21000.0 exceeds global company max salary 20000.0");
         employee.increaseSalary(6000);
     }
 
     @Test
     public void TEST_decreaseSalary(){
-        assertEquals(3000, employeeTester.getSalary(), 0);
+        assertEquals(5000, employeeTester.getSalary(), 0);
         employeeTester.decreaseSalary(1000);
-        assertEquals(2000, employeeTester.getSalary(), 0);
+        assertEquals(4000, employeeTester.getSalary(), 0);
+    }
+
+    @Test
+    public void TEST_throwUnderSalaryNotInRangeExceptionInDecreaseSalaryMethod(){
+        assertEquals(5000, employeeTester.getSalary(), 0);
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Decreasing salary: 5000.0 - 3000.0 = 2000.0 is under global company min salary 3000.0");
+        employeeTester.decreaseSalary(3000);
     }
 
     @Test
     public void TEST_throwDecreaseChangeSalaryException(){
-        expectedException.expect(ChangeSalaryException.class);
+        expectedException.expect(NegativeSalaryException.class);
         expectedException.expectMessage("Decrease amount must be greater then 0.");
         employeeTester.decreaseSalary(-1000);
     }
