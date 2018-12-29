@@ -35,7 +35,7 @@ public class Department {
         } else {
             if (!(job.getDepartmentType().equals(this.departmentType))){
                 throw new DifferentDepartmentTypeException
-                        ("Attempt to add job to " + this.departmentType + " department, when job is assigned to " + job.getDepartmentType() + "department");
+                        ("Attempt to add job to " + this.departmentType + " department, when job is assigned to " + job.getDepartmentType() + " department");
             } else{
                 jobList.add(job);
             }
