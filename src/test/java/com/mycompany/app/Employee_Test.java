@@ -178,7 +178,10 @@ public class Employee_Test {
 
     @Test
     public void TEST_throwOverSalaryNotInRangeExceptionInSetter(){
-        // TODO: test to be written
+        assertEquals(5000, employeeTester.getSalary(),0);
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Salary 22000.0 exceeds global max salary: " + Job.globalMaxSalary);
+        employeeTester.setSalary(22000);
     }
 
     @Test
