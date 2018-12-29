@@ -155,16 +155,23 @@ public class Employee_Test {
 
     @Test
     public void TEST_setSalary(){
+        assertEquals(5000, employeeTester.getSalary(),0);
+        employeeTester.setSalary(6000);
+        assertEquals(6000, employeeTester.getSalary(),0);
+    }
+
+    @Test
+    public void TEST_throwsNegativeSalaryExceptionInSetSalary(){
         // TODO: test to be written
     }
 
     @Test
-    public void TEST_throwUnderSalaryNotInRageExeceptionInSetter(){
+    public void TEST_throwUnderSalaryNotInRageExceptionInSetter(){
         // TODO: test to be written
     }
 
     @Test
-    public void TEST_throwOverSalaryNotInRangeExeceptionInSetter(){
+    public void TEST_throwOverSalaryNotInRangeExceptionInSetter(){
         // TODO: test to be written
     }
 
