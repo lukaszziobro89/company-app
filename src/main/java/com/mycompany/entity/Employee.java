@@ -2,7 +2,7 @@ package com.mycompany.entity;
 
 import com.mycompany.exceptions.AgeException;
 import com.mycompany.exceptions.ChangeSalaryException;
-import com.mycompany.exceptions.SalaryException;
+import com.mycompany.exceptions.NegativeSalaryException;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class Employee{
             double salary,
             String email,
             DepartmentType department,
-            List<String> languages) throws AgeException, SalaryException {
+            List<String> languages) throws AgeException, NegativeSalaryException {
         this.id = id++;
         this.name = name;
         this.surname = surname;
@@ -38,7 +38,7 @@ public class Employee{
             if (salary > 0) {
                 this.salary = salary;
             } else {
-                    throw new SalaryException("Salary cannot be negative.");
+                    throw new NegativeSalaryException("Salary cannot be negative.");
             }
         this.email = email;
         this.department = department;
@@ -59,6 +59,37 @@ public class Employee{
                 ", department=" + department +
                 ", languages=" + languages +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (age != employee.age) return false;
+        if (Double.compare(employee.salary, salary) != 0) return false;
+        if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
+        if (surname != null ? !surname.equals(employee.surname) : employee.surname != null) return false;
+        if (email != null ? !email.equals(employee.email) : employee.email != null) return false;
+        if (department != employee.department) return false;
+        return languages != null ? languages.equals(employee.languages) : employee.languages == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + age;
+        temp = Double.doubleToLongBits(salary);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (department != null ? department.hashCode() : 0);
+        result = 31 * result + (languages != null ? languages.hashCode() : 0);
+        return result;
     }
 
     public List<String> getLanguages() {
@@ -136,11 +167,11 @@ public class Employee{
     }
 
     // TODO: add exceptions to not exceed min and max salary
-    public void setSalary(double salary) throws SalaryException{
+    public void setSalary(double salary) throws NegativeSalaryException {
         if (salary > 0) {
             this.salary = salary;
         } else {
-            throw new SalaryException("Salary cannot be negative.");
+            throw new NegativeSalaryException("Salary cannot be negative.");
         }
     }
 
