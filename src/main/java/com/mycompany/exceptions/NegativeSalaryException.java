@@ -1,7 +1,7 @@
 package com.mycompany.exceptions;
 
-public class SalaryException extends RuntimeException {
-    public SalaryException(String message) {
+public class NegativeSalaryException extends RuntimeException {
+    public NegativeSalaryException(String message) {
         super(message);
     }
 }
