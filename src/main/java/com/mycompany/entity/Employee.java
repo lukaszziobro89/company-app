@@ -107,13 +107,15 @@ public class Employee{
     public void setDepartment(DepartmentType department) {
         this.department = department;
     }
-
-    // TODO: add exception to not exceed max salary
+    
     public void increaseSalary(double raiseAmount){
-        if (raiseAmount > 0) {
-            salary += raiseAmount;
-        } else {
+        if (raiseAmount < 0 ) {
             throw new ChangeSalaryException("Raise amount must be greater then 0.");
+        } else if (this.salary + raiseAmount >= Job.globalMaxSalary){
+            throw new ChangeSalaryException("Raising salary: " + this.salary + " + " + raiseAmount + " = " + (this.salary + raiseAmount) +
+                    " exceeds global company max salary " + Job.globalMaxSalary);
+        }else {
+            salary += raiseAmount;
         }
     }
 
