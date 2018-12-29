@@ -1,8 +1,8 @@
 package com.mycompany.entity;
 
 import com.mycompany.exceptions.AgeException;
-import com.mycompany.exceptions.ChangeSalaryException;
 import com.mycompany.exceptions.NegativeSalaryException;
+import com.mycompany.exceptions.SalaryNotInRangeException;
 
 import java.util.List;
 
@@ -29,23 +29,27 @@ public class Employee{
         this.id = id++;
         this.name = name;
         this.surname = surname;
-        // TODO: add exception when min/max salary not in global job min/max
+
             if (age > 0) {
                 this.age = age;
             } else {
                 throw new AgeException("Age cannot be negative or zero.");
             }
-            if (salary > 0) {
+
+            if (salary < 0) {
+                throw new NegativeSalaryException("Salary cannot be negative.");
+            } else if(salary > Job.globalMaxSalary){
+                throw new SalaryNotInRangeException("Salary " + salary + " exceeds global max salary: " + Job.globalMaxSalary);
+            } else if(salary < Job.globalMinSalary){
+                throw new SalaryNotInRangeException("Salary " + salary + " is under global min salary: " + Job.globalMinSalary);
+            }else {
                 this.salary = salary;
-            } else {
-                    throw new NegativeSalaryException("Salary cannot be negative.");
             }
         this.email = email;
         this.department = department;
         this.languages = languages;
         totalEmployeesCounter++;
     }
-
 
     @Override
     public String toString() {
@@ -107,24 +111,26 @@ public class Employee{
     public void setDepartment(DepartmentType department) {
         this.department = department;
     }
-    
+
     public void increaseSalary(double raiseAmount){
         if (raiseAmount < 0 ) {
-            throw new ChangeSalaryException("Raise amount must be greater then 0.");
+            throw new NegativeSalaryException("Raise amount must be greater then 0.");
         } else if (this.salary + raiseAmount >= Job.globalMaxSalary){
-            throw new ChangeSalaryException("Raising salary: " + this.salary + " + " + raiseAmount + " = " + (this.salary + raiseAmount) +
+            throw new SalaryNotInRangeException("Raising salary: " + this.salary + " + " + raiseAmount + " = " + (this.salary + raiseAmount) +
                     " exceeds global company max salary " + Job.globalMaxSalary);
         }else {
             salary += raiseAmount;
         }
     }
 
-    // TODO: add exception to not exceed min salary
     public void decreaseSalary(double decreaseAmount){
-        if (decreaseAmount > 0){
+        if (decreaseAmount < 0){
+            throw new NegativeSalaryException("Decrease amount must be greater then 0.");
+        } else if(this.salary - decreaseAmount <= Job.globalMinSalary){
+            throw new SalaryNotInRangeException("Decreasing salary: " + this.salary + " - " + decreaseAmount + " = " + (this.salary - decreaseAmount) +
+                    " is under global company min salary " + Job.globalMinSalary);
+        } else{
             salary -= decreaseAmount;
-        } else {
-            throw new ChangeSalaryException("Decrease amount must be greater then 0.");
         }
     }
 
@@ -168,12 +174,15 @@ public class Employee{
         return salary;
     }
 
-    // TODO: add exceptions to not exceed min and max salary
     public void setSalary(double salary) throws NegativeSalaryException {
-        if (salary > 0) {
-            this.salary = salary;
-        } else {
+        if (salary < 0) {
             throw new NegativeSalaryException("Salary cannot be negative.");
+        } else if(salary > Job.globalMaxSalary){
+            throw new SalaryNotInRangeException("Salary " + salary + " exceeds global max salary: " + Job.globalMaxSalary);
+        } else if(salary < Job.globalMinSalary){
+            throw new SalaryNotInRangeException("Salary " + salary + " is under global min salary: " + Job.globalMinSalary);
+        }else {
+            this.salary = salary;
         }
     }
 
