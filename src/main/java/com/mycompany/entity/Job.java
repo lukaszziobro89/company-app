@@ -1,5 +1,8 @@
 package com.mycompany.entity;
 
+import com.mycompany.exceptions.NegativeSalaryException;
+import com.mycompany.exceptions.SalaryNotInRangeException;
+
 public class Job {
     private int jobId;
     private String jobTitle;
@@ -7,17 +10,35 @@ public class Job {
     private double maxSalary;
     private DepartmentType departmentType;
 
-    private static final double globalMinSalary = 3000;
-    private static final double globalMaxSalary = 20000;
+    public static final double globalMinSalary = 3000;
+    public static final double globalMaxSalary = 20000;
 
     public Job(int jobId, String jobTitle, double minSalary, double maxSalary, DepartmentType departmentType) {
         this.jobId = jobId;
         this.jobTitle = jobTitle;
-        // TODO: add exception for global salary values
-        this.minSalary = minSalary;
-        this.maxSalary = maxSalary;
-        // TODO: constructor - assure that department is from proper list
-        //TODO: exception when max salary < min salary
+
+        if (minSalary < 0) {
+                throw new NegativeSalaryException("Salary cannot be negative.");
+            } else if(minSalary > Job.globalMaxSalary){
+                throw new SalaryNotInRangeException("Salary " + minSalary + " exceeds global max salary: " + Job.globalMaxSalary);
+            } else if(minSalary < Job.globalMinSalary){
+                throw new SalaryNotInRangeException("Salary " + minSalary + " is under global min salary: " + Job.globalMinSalary);
+            }else {
+                this.minSalary= minSalary;
+            }
+
+            if (maxSalary < 0) {
+                throw new NegativeSalaryException("Salary cannot be negative.");
+            } else if(maxSalary > Job.globalMaxSalary){
+                throw new SalaryNotInRangeException("Salary " + maxSalary + " exceeds global max salary: " + Job.globalMaxSalary);
+            } else if(minSalary < Job.globalMinSalary){
+                throw new SalaryNotInRangeException("Salary " + maxSalary + " is under global min salary: " + Job.globalMinSalary);
+            }else if(maxSalary < minSalary){
+                throw new SalaryNotInRangeException("Max salary " + maxSalary + " is lower then min salary " + minSalary);
+            }else{
+                this.maxSalary= maxSalary;
+            }
+
         this.departmentType = departmentType;
     }
 
