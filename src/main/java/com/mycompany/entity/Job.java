@@ -84,4 +84,30 @@ public class Job {
         // TODO: setter - assure that department is from proper list
         this.departmentType = departmentType;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Job job = (Job) o;
+
+        if (Double.compare(job.minSalary, minSalary) != 0) return false;
+        if (Double.compare(job.maxSalary, maxSalary) != 0) return false;
+        if (jobTitle != null ? !jobTitle.equals(job.jobTitle) : job.jobTitle != null) return false;
+        return departmentType == job.departmentType;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = jobTitle != null ? jobTitle.hashCode() : 0;
+        temp = Double.doubleToLongBits(minSalary);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(maxSalary);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (departmentType != null ? departmentType.hashCode() : 0);
+        return result;
+    }
 }
