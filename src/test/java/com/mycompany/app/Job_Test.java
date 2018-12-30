@@ -7,6 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.*;
 
@@ -31,6 +32,16 @@ public class Job_Test {
         Job job2 = new Job(30, "Java Developer", 6000, 20000, DepartmentType.IT);
         assertEquals(job, job1);
         assertNotEquals(job1, job2);
+    }
+
+    @Test
+    public void TEST_hashCodeMethod(){
+        Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
+        Job job1 = new Job(20, "Java Developer", 5000, 20000, DepartmentType.IT);
+        Job job2 = new Job(30, "Java Developer", 6000, 20000, DepartmentType.IT);
+
+        assertEquals(job.hashCode(), job1.hashCode());
+        assertNotEquals(job1.hashCode(), job2.hashCode());
     }
 
 
