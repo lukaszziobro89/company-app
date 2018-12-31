@@ -2,13 +2,12 @@ package com.mycompany.app;
 
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Job;
-import junit.framework.TestCase;
+import com.mycompany.exceptions.NegativeSalaryException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.*;
 
 public class Job_Test {
@@ -23,6 +22,13 @@ public class Job_Test {
         assertEquals(10, job.getJobId());
         assertEquals(20, job1.getJobId());
         assertEquals(30, job2.getJobId());
+    }
+
+    @Test
+    public void TEST_minSalaryThrowNegativeSalaryException(){
+        expectedException.expect(NegativeSalaryException.class);
+        expectedException.expectMessage("Salary cannot be negative.");
+        Job job = new Job(10, "Java Developer", -5000, 20000, DepartmentType.IT);
     }
 
     @Test
