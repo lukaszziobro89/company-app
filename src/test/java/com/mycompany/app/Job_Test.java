@@ -40,6 +40,13 @@ public class Job_Test {
     }
 
     @Test
+    public void TEST_throwSalaryNotInRangeExceptionGlobalMinSalary(){
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Salary 2000.0 is under global min salary: 3000.0");
+        Job job = new Job(10, "Java Developer", 2000, 20000, DepartmentType.IT);
+    }
+
+    @Test
     public void TEST_equalsMethod(){
         Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
         Job job1 = new Job(20, "Java Developer", 5000, 20000, DepartmentType.IT);
