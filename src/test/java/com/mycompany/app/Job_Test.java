@@ -3,6 +3,7 @@ package com.mycompany.app;
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Job;
 import com.mycompany.exceptions.NegativeSalaryException;
+import com.mycompany.exceptions.SalaryNotInRangeException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -29,6 +30,13 @@ public class Job_Test {
         expectedException.expect(NegativeSalaryException.class);
         expectedException.expectMessage("Salary cannot be negative.");
         Job job = new Job(10, "Java Developer", -5000, 20000, DepartmentType.IT);
+    }
+
+    @Test
+    public void TEST_throwSalaryNotInRangeExceptionMinSalaryGreaterThenGlobalMaxSalary(){
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Salary 21000.0 exceeds global max salary: 20000.0");
+        Job job = new Job(10, "Java Developer", 21000, 20000, DepartmentType.IT);
     }
 
     @Test
