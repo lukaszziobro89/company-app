@@ -47,6 +47,13 @@ public class Job_Test {
     }
 
     @Test
+    public void TEST_throwNegativeSalaryExceptionMaxSalary(){
+        expectedException.expect(NegativeSalaryException.class);
+        expectedException.expectMessage("Salary cannot be negative.");
+        Job job = new Job(10, "Java Developer", 6000, -6000, DepartmentType.IT);
+    }
+
+    @Test
     public void TEST_equalsMethod(){
         Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
         Job job1 = new Job(20, "Java Developer", 5000, 20000, DepartmentType.IT);
