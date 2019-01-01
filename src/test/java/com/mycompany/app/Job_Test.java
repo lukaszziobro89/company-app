@@ -61,6 +61,13 @@ public class Job_Test {
     }
 
     @Test
+    public void TEST_throwMaxSalaryExceedsGlobalMaxSalary(){
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Salary 36000.0 exceeds global max salary: 20000.0");
+        Job job = new Job(10, "Java Developer", 6000, 36000, DepartmentType.IT);
+    }
+
+    @Test
     public void TEST_equalsMethod(){
         Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
         Job job1 = new Job(20, "Java Developer", 5000, 20000, DepartmentType.IT);
