@@ -19,6 +19,8 @@ public class Job {
 
         if (minSalary < 0) {
                 throw new NegativeSalaryException("Salary cannot be negative.");
+            } else if(maxSalary < 0){
+                throw new NegativeSalaryException("Salary cannot be negative.");
             } else if(minSalary > Job.globalMaxSalary){
                 throw new SalaryNotInRangeException("Salary " + minSalary + " exceeds global max salary: " + Job.globalMaxSalary);
             } else if(minSalary < Job.globalMinSalary){
@@ -29,9 +31,7 @@ public class Job {
                 this.minSalary= minSalary;
             }
 
-            if (maxSalary < 0) {
-                throw new NegativeSalaryException("Salary cannot be negative.");
-            } else if(maxSalary > Job.globalMaxSalary){
+            if(maxSalary > Job.globalMaxSalary){
                 throw new SalaryNotInRangeException("Salary " + maxSalary + " exceeds global max salary: " + Job.globalMaxSalary);
             } else{
                 this.maxSalary= maxSalary;
