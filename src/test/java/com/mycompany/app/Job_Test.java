@@ -40,10 +40,17 @@ public class Job_Test {
     }
 
     @Test
-    public void TEST_throwSalaryNotInRangeExceptionGlobalMinSalary(){
+    public void TEST_throwSalaryNotInRangeExceptionMinSalaryLessThenGlobalMinSalary(){
         expectedException.expect(SalaryNotInRangeException.class);
         expectedException.expectMessage("Salary 2000.0 is under global min salary: 3000.0");
         Job job = new Job(10, "Java Developer", 2000, 20000, DepartmentType.IT);
+    }
+
+    @Test
+    public void TEST_throwSalaryNotInRangeExceptionMinSalaryGreaterThenMaxSalary(){
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Min salary 6000.0 is greater then max salary 5000.0");
+        Job job = new Job(10, "Java Developer", 6000, 5000, DepartmentType.IT);
     }
 
     @Test
