@@ -70,15 +70,18 @@ public class Job_Test {
     @Test
     public void TEST_setMinSalary(){
         Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
-        assertEquals(5000, job.getMinSalary());
+        assertEquals(5000.0, job.getMinSalary());
         job.setMinSalary(4000);
-        assertEquals(4000, job.getMinSalary());
+        assertEquals(4000.0, job.getMinSalary());
     }
 
-//    @Test
-//    public void TEST_throwExceptionNegativeSalaryExceptionSetMinSalary(){
-//
-//    }
+    @Test
+    public void TEST_throwExceptionNegativeSalaryExceptionSetMinSalary(){
+        Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
+        expectedException.expect(NegativeSalaryException.class);
+        expectedException.expectMessage("Salary cannot be negative.");
+        job.setMinSalary(-2000);
+    }
 //
 //    @Test
 //    public void TEST_throwExceptionMinSalaryGreaterThenGlobalMaxSalarySetMinSalary(){
