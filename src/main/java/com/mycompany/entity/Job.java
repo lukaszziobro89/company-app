@@ -23,7 +23,9 @@ public class Job {
                 throw new SalaryNotInRangeException("Salary " + minSalary + " exceeds global max salary: " + Job.globalMaxSalary);
             } else if(minSalary < Job.globalMinSalary){
                 throw new SalaryNotInRangeException("Salary " + minSalary + " is under global min salary: " + Job.globalMinSalary);
-            }else {
+             } else if(minSalary > maxSalary) {
+                throw new SalaryNotInRangeException("Min salary " + minSalary + " is greater then max salary " + maxSalary);
+            } else{
                 this.minSalary= minSalary;
             }
 
@@ -31,11 +33,7 @@ public class Job {
                 throw new NegativeSalaryException("Salary cannot be negative.");
             } else if(maxSalary > Job.globalMaxSalary){
                 throw new SalaryNotInRangeException("Salary " + maxSalary + " exceeds global max salary: " + Job.globalMaxSalary);
-            } else if(minSalary < Job.globalMinSalary){
-                throw new SalaryNotInRangeException("Salary " + maxSalary + " is under global min salary: " + Job.globalMinSalary);
-            }else if(maxSalary < minSalary){
-                throw new SalaryNotInRangeException("Max salary " + maxSalary + " is lower then min salary " + minSalary);
-            }else{
+            } else{
                 this.maxSalary= maxSalary;
             }
 
