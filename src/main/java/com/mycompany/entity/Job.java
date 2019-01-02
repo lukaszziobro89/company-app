@@ -79,9 +79,20 @@ public class Job {
     }
 
     public void setMaxSalary(double maxSalary) {
-        // TODO: add implementation using globalMinSalary
-        this.maxSalary = maxSalary;
+        if (maxSalary < 0){
+            throw new NegativeSalaryException("Salary cannot be negative.");
+        } else if(maxSalary > Job.globalMaxSalary){
+            throw new SalaryNotInRangeException("Salary " + maxSalary + " exceeds global max salary: " + Job.globalMaxSalary);
+        } else if(maxSalary < globalMinSalary){
+            throw new SalaryNotInRangeException("Salary " + maxSalary + " is under global min salary: " + Job.globalMinSalary);
+        } else if(maxSalary < minSalary){
+            throw new SalaryNotInRangeException("Max salary " + maxSalary + " is lower then min salary " + minSalary);
+        }else {
+            this.maxSalary = maxSalary;
+        }
     }
+
+
 
     public DepartmentType getDepartmentType() {
         return departmentType;
