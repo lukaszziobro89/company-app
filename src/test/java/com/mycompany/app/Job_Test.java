@@ -121,10 +121,14 @@ public class Job_Test {
         job.setMaxSalary(-7000);
     }
 
-//    @Test
-//    public void TEST_SetMaxSalary(){
-//
-//    }
+    @Test
+    public void TEST_throwExceptionMaxSalaryGreaterThenGlobalMaxSalarySetMaxSalary(){
+        Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
+        assertEquals(20000.0, job.getMaxSalary());
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Salary 21000.0 exceeds global max salary: 20000.0");
+        job.setMaxSalary(21000);
+    }
 //
 //    @Test
 //    public void TEST_SetMaxSalary(){
