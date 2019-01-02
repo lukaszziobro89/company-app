@@ -16,7 +16,7 @@ public class Job_Test {
     public ExpectedException expectedException = ExpectedException.none();
 
 /**************************************
-    SetMinSalary method tests
+    Constructors tests
 **************************************/
 
     @Test

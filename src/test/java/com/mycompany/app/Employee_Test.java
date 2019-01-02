@@ -16,6 +16,9 @@ import static org.junit.Assert.*;
 
 public class Employee_Test {
 
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
     private Employee employeeTester = new Employee(
             "FirstName",
             "LastName",
@@ -26,8 +29,9 @@ public class Employee_Test {
             Arrays.asList("English", "Spanish")
     );
 
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
+/**************************************
+     Constructors tests
+**************************************/
 
     @Test
     public void TEST_createEmployee(){
@@ -39,62 +43,6 @@ public class Employee_Test {
                     "mail@mail.com",
                     DepartmentType.IT,
                     Collections.singletonList("English"));
-    }
-
-    @Test
-    public void TEST_toString(){
-        Employee employee = new Employee(
-                "Name",
-                "Surname",
-                33,
-                5000,
-                "mail@mail.com",
-                DepartmentType.Marketing,
-                Arrays.asList("English", "Spanish")
-        );
-        String expected = "Employee{id=0, name='Name', surname='Surname', age=33, salary=5000.0, email='mail@mail.com', department=Marketing, languages=[English, Spanish]}";
-        String actual = employee.toString();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void TEST_hashCode(){
-        Employee employee = new Employee(
-                "Name",
-                "Surname",
-                33,
-                5000,
-                "mail@mail.com",
-                DepartmentType.Marketing,
-                Arrays.asList("English", "Spanish")
-        );
-
-        Employee employee1 = new Employee(
-                "Name",
-                "Surname",
-                33,
-                5000,
-                "mail@mail.com",
-                DepartmentType.Marketing,
-                Arrays.asList("English", "Spanish")
-        );
-
-        Employee employee2 = new Employee(
-                "Name2",
-                "Surname2",
-                34,
-                6000,
-                "mail2@mail.com",
-                DepartmentType.Marketing,
-                Collections.singletonList("English")
-        );
-
-        assertEquals(employee, employee1);
-        assertNotEquals(employee, employee2);
-
-        assertEquals(employee.hashCode(), employee1.hashCode());
-        assertNotEquals(employee.hashCode(), employee2.hashCode());
     }
 
     @Test
@@ -153,6 +101,10 @@ public class Employee_Test {
                 Collections.singletonList("English"));
     }
 
+/**************************************
+     SetSalary tests (with exceptions)
+**************************************/
+
     @Test
     public void TEST_setSalary(){
         assertEquals(5000, employeeTester.getSalary(),0);
@@ -183,6 +135,10 @@ public class Employee_Test {
         expectedException.expectMessage("Salary 22000.0 exceeds global max salary: " + Job.globalMaxSalary);
         employeeTester.setSalary(22000);
     }
+
+/**************************************
+     Increase salary tests
+**************************************/
 
     @Test
     public void TEST_increaseSalary(){
@@ -221,6 +177,10 @@ public class Employee_Test {
         assertEquals(4000, employeeTester.getSalary(), 0);
     }
 
+/**************************************
+     Decrease tests
+**************************************/
+
     @Test
     public void TEST_throwUnderSalaryNotInRangeExceptionInDecreaseSalaryMethod(){
         assertEquals(5000, employeeTester.getSalary(), 0);
@@ -234,5 +194,65 @@ public class Employee_Test {
         expectedException.expect(NegativeSalaryException.class);
         expectedException.expectMessage("Decrease amount must be greater then 0.");
         employeeTester.decreaseSalary(-1000);
+    }
+
+/**************************************
+     Equals and HashCode tests
+**************************************/
+
+    @Test
+    public void TEST_toString(){
+        Employee employee = new Employee(
+                "Name",
+                "Surname",
+                33,
+                5000,
+                "mail@mail.com",
+                DepartmentType.Marketing,
+                Arrays.asList("English", "Spanish")
+        );
+        String expected = "Employee{id=0, name='Name', surname='Surname', age=33, salary=5000.0, email='mail@mail.com', department=Marketing, languages=[English, Spanish]}";
+        String actual = employee.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void TEST_hashCode(){
+        Employee employee = new Employee(
+                "Name",
+                "Surname",
+                33,
+                5000,
+                "mail@mail.com",
+                DepartmentType.Marketing,
+                Arrays.asList("English", "Spanish")
+        );
+
+        Employee employee1 = new Employee(
+                "Name",
+                "Surname",
+                33,
+                5000,
+                "mail@mail.com",
+                DepartmentType.Marketing,
+                Arrays.asList("English", "Spanish")
+        );
+
+        Employee employee2 = new Employee(
+                "Name2",
+                "Surname2",
+                34,
+                6000,
+                "mail2@mail.com",
+                DepartmentType.Marketing,
+                Collections.singletonList("English")
+        );
+
+        assertEquals(employee, employee1);
+        assertNotEquals(employee, employee2);
+
+        assertEquals(employee.hashCode(), employee1.hashCode());
+        assertNotEquals(employee.hashCode(), employee2.hashCode());
     }
 }
