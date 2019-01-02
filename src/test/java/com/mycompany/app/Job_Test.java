@@ -112,11 +112,15 @@ public class Job_Test {
         assertEquals(7000.0, job.getMaxSalary());
     }
 
-//    @Test
-//    public void TEST_throwExceptionNegativeSalaryExceptionSetMaxSalary(){
-//
-//    }
-//
+    @Test
+    public void TEST_throwExceptionNegativeSalaryExceptionSetMaxSalary(){
+        Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
+        assertEquals(20000.0, job.getMaxSalary());
+        expectedException.expect(NegativeSalaryException.class);
+        expectedException.expectMessage("Salary cannot be negative.");
+        job.setMaxSalary(-7000);
+    }
+
 //    @Test
 //    public void TEST_SetMaxSalary(){
 //
