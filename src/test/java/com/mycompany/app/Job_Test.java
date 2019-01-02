@@ -139,10 +139,14 @@ public class Job_Test {
         job.setMaxSalary(2000);
     }
 
-//    @Test
-//    public void TEST_SetMaxSalary(){
-//
-//    }
+    @Test
+    public void TEST_throwExceptionMaxSalaryLowerThenMinSalarySetMaxSalary(){
+        Job job = new Job(10, "Java Developer", 7000, 10000, DepartmentType.IT);
+        assertEquals(10000.0, job.getMaxSalary());
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Max salary 5000.0 is lower then min salary 7000.0");
+        job.setMaxSalary(5000);
+    }
 
     @Test
     public void TEST_equalsMethod(){
