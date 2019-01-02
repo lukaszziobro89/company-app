@@ -92,14 +92,11 @@ public class Job {
         }
     }
 
-
-
     public DepartmentType getDepartmentType() {
         return departmentType;
     }
 
     public void setDepartmentType(DepartmentType departmentType) {
-        // TODO: setter - assure that department is from proper list
         this.departmentType = departmentType;
     }
 

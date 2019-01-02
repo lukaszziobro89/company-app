@@ -15,6 +15,10 @@ public class Job_Test {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
+/**************************************
+    SetMinSalary method tests
+**************************************/
+
     @Test
     public void TEST_createJobConstructor(){
         Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
@@ -67,6 +71,10 @@ public class Job_Test {
         Job job = new Job(10, "Java Developer", 6000, 36000, DepartmentType.IT);
     }
 
+/**************************************
+    SetMinSalary method tests
+**************************************/
+
     @Test
     public void TEST_setMinSalary(){
         Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
@@ -103,6 +111,10 @@ public class Job_Test {
         expectedException.expectMessage("Min salary 6000.0 is greater then max salary 5000.0");
         Job job = new Job(10, "Java Developer", 6000, 5000, DepartmentType.IT);
     }
+
+/**************************************
+     SetMaxSalary method tests
+**************************************/
 
     @Test
     public void TEST_SetMaxSalary(){
@@ -147,6 +159,10 @@ public class Job_Test {
         expectedException.expectMessage("Max salary 5000.0 is lower then min salary 7000.0");
         job.setMaxSalary(5000);
     }
+
+/**************************************
+     Equals and HashCode methods tests
+**************************************/
 
     @Test
     public void TEST_equalsMethod(){
