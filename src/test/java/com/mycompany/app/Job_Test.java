@@ -105,6 +105,34 @@ public class Job_Test {
     }
 
     @Test
+    public void TEST_SetMaxSalary(){
+        Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
+        assertEquals(20000.0, job.getMaxSalary());
+        job.setMaxSalary(7000);
+        assertEquals(7000.0, job.getMaxSalary());
+    }
+
+//    @Test
+//    public void TEST_throwExceptionNegativeSalaryExceptionSetMaxSalary(){
+//
+//    }
+//
+//    @Test
+//    public void TEST_SetMaxSalary(){
+//
+//    }
+//
+//    @Test
+//    public void TEST_SetMaxSalary(){
+//
+//    }
+//
+//    @Test
+//    public void TEST_SetMaxSalary(){
+//
+//    }
+
+    @Test
     public void TEST_equalsMethod(){
         Job job = new Job(10, "Java Developer", 5000, 20000, DepartmentType.IT);
         Job job1 = new Job(20, "Java Developer", 5000, 20000, DepartmentType.IT);
