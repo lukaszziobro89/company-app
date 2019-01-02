@@ -82,12 +82,14 @@ public class Job_Test {
         expectedException.expectMessage("Salary cannot be negative.");
         job.setMinSalary(-2000);
     }
-//
-//    @Test
-//    public void TEST_throwExceptionMinSalaryGreaterThenGlobalMaxSalarySetMinSalary(){
-//
-//    }
-//
+
+    @Test
+    public void TEST_throwExceptionMinSalaryGreaterThenGlobalMaxSalarySetMinSalary(){
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Salary 25000.0 exceeds global max salary: 20000.0");
+        Job job = new Job(10, "Java Developer", 25000, 20000, DepartmentType.IT);
+    }
+
 //    @Test
 //    public void TEST_throwExceptionMinSalaryUnderGlobalMinSalarySetMinSalary(){
 //
