@@ -90,11 +90,13 @@ public class Job_Test {
         Job job = new Job(10, "Java Developer", 25000, 20000, DepartmentType.IT);
     }
 
-//    @Test
-//    public void TEST_throwExceptionMinSalaryUnderGlobalMinSalarySetMinSalary(){
-//
-//    }
-//
+    @Test
+    public void TEST_throwExceptionMinSalaryUnderGlobalMinSalarySetMinSalary(){
+        expectedException.expect(SalaryNotInRangeException.class);
+        expectedException.expectMessage("Salary 2000.0 is under global min salary: 3000.0");
+        Job job = new Job(10, "Java Developer", 2000, 20000, DepartmentType.IT);
+    }
+
 //    @Test
 //    public void TEST_throwExceptionMinSalaryGreaterThenMaxSalarySetMinSalary(){
 //
