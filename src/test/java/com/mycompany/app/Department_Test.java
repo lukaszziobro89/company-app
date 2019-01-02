@@ -20,6 +20,10 @@ public class Department_Test {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
+/**************************************
+     Constructors tests
+**************************************/
+
     @Test
     public void TEST_createDepartmentConstructor1(){
         Department department = new Department(DepartmentType.Construction);
@@ -68,6 +72,10 @@ public class Department_Test {
         assertEquals(40, department.getDepartmentId());
         assertEquals(50, department1.getDepartmentId());
     }
+
+/**************************************
+     Add job to job list tests
+**************************************/
 
     @Test
     public void TEST_addJobToJobList(){
