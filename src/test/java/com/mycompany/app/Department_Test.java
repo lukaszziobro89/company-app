@@ -113,4 +113,27 @@ public class Department_Test {
         payrollDepartment.addJobToJobList(treasuryJob);
     }
 
+/**************************************
+ Add employee to employees list tests
+**************************************/
+
+    @Test
+    public void TEST_addSingleEmployeeToEmployeesList(){
+        Department payrollDepartment = new Department(DepartmentType.Payroll);
+        Employee employee = new Employee(
+                "FirstName",
+                "LastName",
+                33,
+                3000,
+                "mail@mail.com",
+                DepartmentType.Executive,
+                Collections.singletonList("English"));
+        payrollDepartment.addEmployeeToEmployeesList(employee);
+    }
+
+//    @Test
+//    public void TEST_throwEmployeeAlreadyInEmployeesListException(){
+//
+//    }
+
 }
