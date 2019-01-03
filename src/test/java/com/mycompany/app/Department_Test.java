@@ -11,6 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -152,6 +153,36 @@ public class Department_Test {
                 "surname='LastName', age=33, salary=3000.0, email='mail@mail.com', " +
                 "department=Executive, languages=[English]} is already in employees list.");
         payrollDepartment.addEmployeeToEmployeesList(employee);
+    }
+
+    @Test
+    public void TEST_addListOfEmployeesToEmployeeList(){
+        Department department = new Department(DepartmentType.Construction);
+        Employee employee = new Employee(
+                "FirstName",
+                "LastName",
+                33,
+                3000,
+                "mail@mail.com",
+                DepartmentType.Executive,
+                Collections.singletonList("English"));
+
+        Employee employee1 = new Employee(
+                "FirstName1",
+                "LastName1",
+                34,
+                3000,
+                "mail@mail.com",
+                DepartmentType.Executive,
+                Collections.singletonList("English"));
+
+        ArrayList<Employee> employees = new ArrayList<>();
+        employees.add(employee);
+        employees.add(employee1);
+
+        department.addEmployeeToEmployeesList(employees);
+
+        assertEquals(2, department.getEmployeeList().size());
     }
 
 }
