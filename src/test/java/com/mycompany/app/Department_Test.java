@@ -5,6 +5,7 @@ import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
 import com.mycompany.entity.Job;
 import com.mycompany.exceptions.DifferentDepartmentTypeException;
+import com.mycompany.exceptions.EmployeeAlreadyInEmployeesListException;
 import com.mycompany.exceptions.JobAlreadyInListException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Department_Test {
 
@@ -131,9 +133,25 @@ public class Department_Test {
         payrollDepartment.addEmployeeToEmployeesList(employee);
     }
 
-//    @Test
-//    public void TEST_throwEmployeeAlreadyInEmployeesListException(){
-//
-//    }
+    @Test
+    public void TEST_throwEmployeeAlreadyInEmployeesListException(){
+        Department payrollDepartment = new Department(DepartmentType.Payroll);
+        Employee employee = new Employee(
+                "FirstName",
+                "LastName",
+                33,
+                3000,
+                "mail@mail.com",
+                DepartmentType.Executive,
+                Collections.singletonList("English"));
+        payrollDepartment.addEmployeeToEmployeesList(employee);
+
+        assertTrue(payrollDepartment.getEmployeeList().contains(employee));
+        expectedException.expect(EmployeeAlreadyInEmployeesListException.class);
+        expectedException.expectMessage("Employee Employee{id=0, name='FirstName', " +
+                "surname='LastName', age=33, salary=3000.0, email='mail@mail.com', " +
+                "department=Executive, languages=[English]} is already in employees list.");
+        payrollDepartment.addEmployeeToEmployeesList(employee);
+    }
 
 }
