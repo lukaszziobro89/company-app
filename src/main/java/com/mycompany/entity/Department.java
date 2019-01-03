@@ -50,8 +50,14 @@ public class Department {
         }
     }
 
-    public void addEmployeeToEmployeesList(List<Employee> employeesList) throws EmployeeAlreadyInEmployeesListException {
-        // TODO: add implementation of adding list of employees to employees list
+    public void addEmployeeToEmployeesList(List<Employee> employees) throws EmployeeAlreadyInEmployeesListException {
+        for(Employee employee : employees){
+            if(employeesList.contains(employee)){
+                throw new EmployeeAlreadyInEmployeesListException("Employee " + employee.toString() + " is already in employees list.");
+            }else {
+                employeesList.add(employee);
+            }
+        }
     }
 
     public int getDepartmentId() {
