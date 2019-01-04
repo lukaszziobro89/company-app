@@ -50,7 +50,7 @@ public class DepartmentsUtils_Test {
 
     @Test
     public void TEST_sumSalariesForDepartment(){
-        double sumFinance = departmentsUtils.sumSalariesForDepartement(FinanceDepartment);
+        double sumFinance = departmentsUtils.sumSalariesForDepartment(FinanceDepartment);
         assertEquals(33000.0, sumFinance,0);
     }
 }

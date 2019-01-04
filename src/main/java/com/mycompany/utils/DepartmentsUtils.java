@@ -11,4 +11,10 @@ public class DepartmentsUtils {
                 .average()
                 .orElse(Double.NaN);
     }
+
+    public double sumSalariesForDepartment(Department department){
+        return department.getEmployeeList().stream()
+                .mapToDouble(Employee::getSalary)
+                .sum();
+    }
 }
