@@ -48,4 +48,15 @@ public class EmployeesUtils_Test {
 
         assertEquals(assertLanguages, marketingLanguages);
     }
+
+    @Test
+    public void TEST_getEmployeesBetweenAge(){
+        List<Employee> employeesHigher34lower37 = employeesUtils.getEmployeesBetweenAge(MarketingDepartment, 34,37);
+        List<Employee> assertEmployees = Arrays.asList(
+                MarketingDepartment.getEmployeeList().get(2),
+                MarketingDepartment.getEmployeeList().get(3)
+        );
+
+        assertEquals(assertEmployees, employeesHigher34lower37);
+    }
 }
