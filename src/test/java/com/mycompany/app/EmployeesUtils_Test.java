@@ -3,15 +3,18 @@ package com.mycompany.app;
 import com.mycompany.entity.Department;
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
-import com.mycompany.utils.DepartmentsUtils;
+import com.mycompany.utils.EmployeesUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class EmployeesUtils_Test {
-    private DepartmentsUtils departmentsUtils = new DepartmentsUtils();
+    private EmployeesUtils employeesUtils = new EmployeesUtils();
     private static Department MarketingDepartment = new Department(DepartmentType.Marketing);
 
     @BeforeClass
@@ -40,6 +43,9 @@ public class EmployeesUtils_Test {
 
     @Test
     public void TEST_getAllLanguagesEmployeesSpeakFromDepartment(){
+        List<String> marketingLanguages = employeesUtils.getAllLanguagesEmployeesSpeakFromDepartment(MarketingDepartment);
+        List<String> assertLanguages = Arrays.asList("English", "Spanish", "German", "Polish");
 
+        assertEquals(assertLanguages, marketingLanguages);
     }
 }
