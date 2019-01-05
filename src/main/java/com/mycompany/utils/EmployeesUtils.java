@@ -1,6 +1,7 @@
 package com.mycompany.utils;
 
 import com.mycompany.entity.Department;
+import com.mycompany.entity.Employee;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,5 +15,11 @@ public class EmployeesUtils {
                     .flatMap(Stream::sorted)
                         .distinct()
                             .collect(Collectors.toList());
+    }
+
+    public List<Employee> getEmployeesBetweenAge(Department department, int higherThen, int lessThen){
+        return department.getEmployeeList().stream()
+                .filter(employee -> employee.getAge() > higherThen && employee.getAge() < lessThen)
+                .collect(Collectors.toList());
     }
 }
