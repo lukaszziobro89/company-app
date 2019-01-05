@@ -5,7 +5,9 @@ import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
 import com.mycompany.utils.DepartmentsUtils;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 public class EmployeesUtils_Test {
@@ -16,11 +18,11 @@ public class EmployeesUtils_Test {
     public static void createDepartment(){
         Department marketingDepartment = new Department(DepartmentType.Finance);
         Employee employee = new Employee("FirstName", "LastName", 33, 3000,
-                "mail@mail.com", DepartmentType.Executive, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Executive, Arrays.asList("English","Spanish"));
         Employee employee1 = new Employee("FirstName1", "LastName1", 34, 4000,
-                "mail@mail.com", DepartmentType.Executive, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Executive, Arrays.asList("English", "German"));
         Employee employee2 = new Employee("FirstName2", "LastName2", 35, 5000,
-                "mail@mail.com", DepartmentType.Executive, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Executive, Arrays.asList("English", "Polish"));
         Employee employee3 = new Employee("FirstName3", "LastName3", 36, 6000,
                 "mail@mail.com", DepartmentType.Executive, Collections.singletonList("English"));
         Employee employee4 = new Employee("FirstName4", "LastName4", 37, 7000,
@@ -34,5 +36,10 @@ public class EmployeesUtils_Test {
         marketingDepartment.addEmployeeToEmployeesList(employee4);
         marketingDepartment.addEmployeeToEmployeesList(employee5);
         MarketingDepartment = marketingDepartment;
+    }
+
+    @Test
+    public void TEST_getAllLanguagesEmployeesSpeakFromDepartment(){
+
     }
 }
