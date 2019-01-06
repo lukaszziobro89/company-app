@@ -31,7 +31,7 @@ public class EmployeesUtils_Test {
         Employee employee4 = new Employee("FirstName4", "LastName4", 37, 7000,
                 "mail@mail.com", DepartmentType.Executive, Collections.singletonList("English"));
         Employee employee5 = new Employee("FirstName5", "LastName5", 38, 8000,
-                "mail@mail.com", DepartmentType.Executive, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Executive, Arrays.asList("English", "Spanish"));
         marketingDepartment.addEmployeeToEmployeesList(employee);
         marketingDepartment.addEmployeeToEmployeesList(employee1);
         marketingDepartment.addEmployeeToEmployeesList(employee2);
@@ -58,5 +58,14 @@ public class EmployeesUtils_Test {
         );
 
         assertEquals(assertEmployees, employeesHigher34lower37);
+    }
+
+    @Test
+    public void TEST_countEmployeesWithLanguage(){
+        long countEnglish = 6;
+        long countSpanish = 2;
+
+        assertEquals(countEnglish, employeesUtils.countEmployeesWithLanguage(MarketingDepartment, "English"));
+        assertEquals(countSpanish, employeesUtils.countEmployeesWithLanguage(MarketingDepartment, "Spanish"));
     }
 }
