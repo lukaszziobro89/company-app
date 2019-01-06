@@ -31,4 +31,10 @@ public class EmployeesUtils {
                         .filter(lan -> lan.equals(language.toLowerCase())))
                 .count();
     }
+
+    public List<Employee> getEmployeesWithLanguage(Department department, String language){
+        return department.getEmployeeList().stream()
+                .filter(emp -> emp.getLanguages().contains(language))
+                .collect(Collectors.toList());
+    }
 }
