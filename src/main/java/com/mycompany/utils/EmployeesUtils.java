@@ -22,4 +22,13 @@ public class EmployeesUtils {
                 .filter(employee -> employee.getAge() > higherThen && employee.getAge() < lessThen)
                 .collect(Collectors.toList());
     }
+
+    public long countEmployeesWithLanguage(Department department, String language){
+        return department.getEmployeeList().stream()
+                .map(user -> user.getLanguages().stream())
+                .flatMap(languageStream -> languageStream
+                        .map(String::toLowerCase)
+                        .filter(lan -> lan.equals(language.toLowerCase())))
+                .count();
+    }
 }
