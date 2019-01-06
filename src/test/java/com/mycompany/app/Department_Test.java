@@ -33,9 +33,9 @@ public class Department_Test {
         Department department1 = new Department(DepartmentType.IT);
         Department department2 = new Department(DepartmentType.Finance);
 
-        assertEquals(10, department.getDepartmentId());
-        assertEquals(20, department1.getDepartmentId());
-        assertEquals(30, department2.getDepartmentId());
+        assertEquals(DepartmentType.Construction, department.getDepartmentType());
+        assertEquals(DepartmentType.IT, department1.getDepartmentType());
+        assertEquals(DepartmentType.Finance, department2.getDepartmentType());
     }
 
     @Test
@@ -72,8 +72,8 @@ public class Department_Test {
                 Collections.singletonList(job1),
                 Arrays.asList(employee, employee1));
 
-        assertEquals(40, department.getDepartmentId());
-        assertEquals(50, department1.getDepartmentId());
+        assertEquals(DepartmentType.Accounting, department.getDepartmentType());
+        assertEquals(DepartmentType.Shareholder_Services, department1.getDepartmentType());
     }
 
 /**************************************
