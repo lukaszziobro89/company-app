@@ -68,4 +68,14 @@ public class EmployeesUtils_Test {
         assertEquals(countEnglish, employeesUtils.countEmployeesWithLanguage(MarketingDepartment, "English"));
         assertEquals(countSpanish, employeesUtils.countEmployeesWithLanguage(MarketingDepartment, "Spanish"));
     }
+
+    @Test
+    public void TEST_getEmployeesWithLanguage(){
+        List<Employee> assertEmployees = Arrays.asList(
+                MarketingDepartment.getEmployeeList().get(0),
+                MarketingDepartment.getEmployeeList().get(5)
+        );
+
+        assertEquals(assertEmployees, employeesUtils.getEmployeesWithLanguage(MarketingDepartment, "Spanish"));
+    }
 }
