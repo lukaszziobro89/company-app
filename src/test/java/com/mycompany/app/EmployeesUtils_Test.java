@@ -78,4 +78,23 @@ public class EmployeesUtils_Test {
 
         assertEquals(assertEmployees, employeesUtils.getEmployeesWithLanguage(MarketingDepartment, "Spanish"));
     }
+
+    @Test
+    public void TEST_raiseSalaryForEmployeesBeginLetter(){
+        assertEquals(3000, MarketingDepartment.getEmployeeList().get(0).getSalary(),0);
+        assertEquals(4000, MarketingDepartment.getEmployeeList().get(1).getSalary(),0);
+        assertEquals(5000, MarketingDepartment.getEmployeeList().get(2).getSalary(),0);
+        assertEquals(6000, MarketingDepartment.getEmployeeList().get(3).getSalary(),0);
+        assertEquals(7000, MarketingDepartment.getEmployeeList().get(4).getSalary(),0);
+        assertEquals(8000, MarketingDepartment.getEmployeeList().get(5).getSalary(),0);
+
+        employeesUtils.raiseSalaryForEmployeesBeginLetter(MarketingDepartment.getEmployeeList(),"F", 100);
+
+        assertEquals(3100, MarketingDepartment.getEmployeeList().get(0).getSalary(),0);
+        assertEquals(4100, MarketingDepartment.getEmployeeList().get(1).getSalary(),0);
+        assertEquals(5100, MarketingDepartment.getEmployeeList().get(2).getSalary(),0);
+        assertEquals(6100, MarketingDepartment.getEmployeeList().get(3).getSalary(),0);
+        assertEquals(7100, MarketingDepartment.getEmployeeList().get(4).getSalary(),0);
+        assertEquals(8100, MarketingDepartment.getEmployeeList().get(5).getSalary(),0);
+    }
 }
