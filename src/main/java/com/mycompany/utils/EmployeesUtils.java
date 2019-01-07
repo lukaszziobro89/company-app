@@ -37,4 +37,10 @@ public class EmployeesUtils {
                 .filter(emp -> emp.getLanguages().contains(language))
                 .collect(Collectors.toList());
     }
+
+    public void raiseSalaryForEmployeesBeginLetter(List<Employee> employeeList, String beginLetter, double raiseAmount){
+        employeeList.stream()
+                .filter(employee -> employee.getName().toLowerCase().startsWith(beginLetter.toLowerCase()))
+                .forEach(employee -> employee.increaseSalary(raiseAmount));
+    }
 }
