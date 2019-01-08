@@ -19,6 +19,9 @@ public class Employee_Test {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
+    private Job itDirector = new Job(10, "Director", 10000,20000, DepartmentType.IT);
+    private Job executive = new Job(10, "Executive", 10000,20000, DepartmentType.Executive);
+
     private Employee employeeTester = new Employee(
             "FirstName",
             "LastName",
@@ -26,6 +29,7 @@ public class Employee_Test {
             5000,
             "email@email.com",
             DepartmentType.Executive,
+            executive,
             Arrays.asList("English", "Spanish")
     );
 
@@ -42,6 +46,7 @@ public class Employee_Test {
                     4000,
                     "mail@mail.com",
                     DepartmentType.IT,
+                    itDirector,
                     Collections.singletonList("English"));
     }
 
@@ -56,6 +61,7 @@ public class Employee_Test {
                     2000,
                     "mail@mail.com",
                     DepartmentType.IT,
+                    itDirector,
                     Collections.singletonList("English"));
     }
 
@@ -70,6 +76,7 @@ public class Employee_Test {
                 -2000,
                 "mail@mail.com",
                 DepartmentType.IT,
+                itDirector,
                 Collections.singletonList("English"));
     }
 
@@ -84,6 +91,7 @@ public class Employee_Test {
                 2000,
                 "mail@mail.com",
                 DepartmentType.IT,
+                itDirector,
                 Collections.singletonList("English"));
     }
 
@@ -98,6 +106,7 @@ public class Employee_Test {
                 21000,
                 "mail@mail.com",
                 DepartmentType.IT,
+                itDirector,
                 Collections.singletonList("English"));
     }
 
@@ -163,6 +172,7 @@ public class Employee_Test {
                 15000,
                 "mail@mail.com",
                 DepartmentType.IT,
+                itDirector,
                 Collections.singletonList("English"));
 
         expectedException.expect(SalaryNotInRangeException.class);
@@ -208,10 +218,12 @@ public class Employee_Test {
                 33,
                 5000,
                 "mail@mail.com",
-                DepartmentType.Marketing,
+                DepartmentType.IT,
+                itDirector,
                 Arrays.asList("English", "Spanish")
         );
-        String expected = "Employee{id=0, name='Name', surname='Surname', age=33, salary=5000.0, email='mail@mail.com', department=Marketing, languages=[English, Spanish]}";
+        String expected = "Employee{id=0, name='Name', surname='Surname', age=33, salary=5000.0, email='mail@mail.com', " +
+                "department=IT, job=Director, languages=[English, Spanish]}";
         String actual = employee.toString();
 
         assertEquals(expected, actual);
@@ -225,7 +237,8 @@ public class Employee_Test {
                 33,
                 5000,
                 "mail@mail.com",
-                DepartmentType.Marketing,
+                DepartmentType.IT,
+                itDirector,
                 Arrays.asList("English", "Spanish")
         );
 
@@ -235,7 +248,8 @@ public class Employee_Test {
                 33,
                 5000,
                 "mail@mail.com",
-                DepartmentType.Marketing,
+                DepartmentType.IT,
+                itDirector,
                 Arrays.asList("English", "Spanish")
         );
 
@@ -245,7 +259,8 @@ public class Employee_Test {
                 34,
                 6000,
                 "mail2@mail.com",
-                DepartmentType.Marketing,
+                DepartmentType.IT,
+                itDirector,
                 Collections.singletonList("English")
         );
 
