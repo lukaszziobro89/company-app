@@ -3,6 +3,7 @@ package com.mycompany.app;
 import com.mycompany.entity.Department;
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
+import com.mycompany.entity.Job;
 import com.mycompany.utils.EmployeesUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,22 +17,23 @@ import static org.junit.Assert.assertEquals;
 public class EmployeesUtils_Test {
     private EmployeesUtils employeesUtils = new EmployeesUtils();
     private static Department MarketingDepartment = new Department(DepartmentType.Marketing);
+    private static Job executiveDirector = new Job(30,"Executive Director", 18000,20000,DepartmentType.Executive);
 
     @BeforeClass
     public static void createDepartment(){
         Department marketingDepartment = new Department(DepartmentType.Finance);
         Employee employee = new Employee("FirstName", "LastName", 33, 3000,
-                "mail@mail.com", DepartmentType.Executive, Arrays.asList("English","Spanish"));
+                "mail@mail.com", DepartmentType.Executive, executiveDirector,  Arrays.asList("English","Spanish"));
         Employee employee1 = new Employee("FirstName1", "LastName1", 34, 4000,
-                "mail@mail.com", DepartmentType.Executive, Arrays.asList("English", "German"));
+                "mail@mail.com", DepartmentType.Executive, executiveDirector, Arrays.asList("English", "German"));
         Employee employee2 = new Employee("FirstName2", "LastName2", 35, 5000,
-                "mail@mail.com", DepartmentType.Executive, Arrays.asList("English", "Polish"));
+                "mail@mail.com", DepartmentType.Executive, executiveDirector, Arrays.asList("English", "Polish"));
         Employee employee3 = new Employee("FirstName3", "LastName3", 36, 6000,
-                "mail@mail.com", DepartmentType.Executive, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Executive, executiveDirector, Collections.singletonList("English"));
         Employee employee4 = new Employee("FirstName4", "LastName4", 37, 7000,
-                "mail@mail.com", DepartmentType.Executive, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Executive, executiveDirector, Collections.singletonList("English"));
         Employee employee5 = new Employee("FirstName5", "LastName5", 38, 8000,
-                "mail@mail.com", DepartmentType.Executive, Arrays.asList("English", "Spanish"));
+                "mail@mail.com", DepartmentType.Executive, executiveDirector, Arrays.asList("English", "Spanish"));
         marketingDepartment.addEmployeeToEmployeesList(employee);
         marketingDepartment.addEmployeeToEmployeesList(employee1);
         marketingDepartment.addEmployeeToEmployeesList(employee2);
