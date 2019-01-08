@@ -23,6 +23,9 @@ public class Department_Test {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
+    private Job manager = new Job(20,"Manager", 8000,15000, DepartmentType.Executive);
+    private Job itHelpdesk = new Job(20,"IT Helpdesk", 8000,15000, DepartmentType.IT_Helpdesk);
+
 /**************************************
      Constructors tests
 **************************************/
@@ -47,6 +50,7 @@ public class Department_Test {
                 3000,
                 "mail@mail.com",
                 DepartmentType.Executive,
+                manager,
                 Collections.singletonList("English"));
 
         Employee employee1 = new Employee(
@@ -56,6 +60,7 @@ public class Department_Test {
                 6000,
                 "mail1@mail.com",
                 DepartmentType.IT_Helpdesk,
+                itHelpdesk,
                 Arrays.asList("English", "Spanish"));
 
         // TODO: change jobid if implementation changes
@@ -130,6 +135,7 @@ public class Department_Test {
                 3000,
                 "mail@mail.com",
                 DepartmentType.Executive,
+                manager,
                 Collections.singletonList("English"));
         payrollDepartment.addEmployeeToEmployeesList(employee);
     }
@@ -144,6 +150,7 @@ public class Department_Test {
                 3000,
                 "mail@mail.com",
                 DepartmentType.Executive,
+                manager,
                 Collections.singletonList("English"));
         payrollDepartment.addEmployeeToEmployeesList(employee);
 
@@ -151,7 +158,7 @@ public class Department_Test {
         expectedException.expect(EmployeeAlreadyInEmployeesListException.class);
         expectedException.expectMessage("Employee Employee{id=0, name='FirstName', " +
                 "surname='LastName', age=33, salary=3000.0, email='mail@mail.com', " +
-                "department=Executive, languages=[English]} is already in employees list.");
+                "department=Executive, job=Manager, languages=[English]} is already in employees list.");
         payrollDepartment.addEmployeeToEmployeesList(employee);
     }
 
@@ -165,6 +172,7 @@ public class Department_Test {
                 3000,
                 "mail@mail.com",
                 DepartmentType.Executive,
+                manager,
                 Collections.singletonList("English"));
 
         Employee employee1 = new Employee(
@@ -174,6 +182,7 @@ public class Department_Test {
                 3000,
                 "mail@mail.com",
                 DepartmentType.Executive,
+                manager,
                 Collections.singletonList("English"));
 
         ArrayList<Employee> employees = new ArrayList<>();
@@ -195,6 +204,7 @@ public class Department_Test {
                 3000,
                 "mail@mail.com",
                 DepartmentType.Executive,
+                manager,
                 Collections.singletonList("English"));
 
         ArrayList<Employee> employees = new ArrayList<>();
@@ -204,7 +214,7 @@ public class Department_Test {
         expectedException.expect(EmployeeAlreadyInEmployeesListException.class);
         expectedException.expectMessage("Employee Employee{id=0, name='FirstName', " +
                 "surname='LastName', age=33, salary=3000.0, email='mail@mail.com', " +
-                "department=Executive, languages=[English]} is already in employees list.");
+                "department=Executive, job=Manager, languages=[English]} is already in employees list.");
         department.addEmployeeToEmployeesList(employees);
     }
 
