@@ -188,7 +188,7 @@ public class Employee_Test {
     }
 
 /**************************************
-     Decrease tests
+     Decrease salary tests
 **************************************/
 
     @Test
