@@ -1,6 +1,7 @@
 package com.mycompany.entity;
 
 import com.mycompany.exceptions.AgeException;
+import com.mycompany.exceptions.IncompatibleDepartmentsException;
 import com.mycompany.exceptions.NegativeSalaryException;
 import com.mycompany.exceptions.SalaryNotInRangeException;
 
@@ -14,6 +15,7 @@ public class Employee{
     private double salary;
     private String email;
     private DepartmentType department;
+    private Job job;
     private List<String> languages;
 
     private static int totalEmployeesCounter = 0;
@@ -25,6 +27,7 @@ public class Employee{
             double salary,
             String email,
             DepartmentType department,
+            Job job,
             List<String> languages) throws AgeException, NegativeSalaryException {
         this.id = id++;
         this.name = name;
@@ -47,6 +50,13 @@ public class Employee{
             }
         this.email = email;
         this.department = department;
+            if (this.getDepartment().equals(job.getDepartmentType())) {
+                this.job = job;
+            } else {
+                // TODO: test throwing exception
+                throw new IncompatibleDepartmentsException("Employees department " + this.department +
+                        " is different then job departement " + job.getDepartmentType());
+            }
         this.languages = languages;
         totalEmployeesCounter++;
     }
@@ -61,6 +71,7 @@ public class Employee{
                 ", salary=" + salary +
                 ", email='" + email + '\'' +
                 ", department=" + department +
+                ", job=" + job.getJobTitle() +
                 ", languages=" + languages +
                 '}';
     }
@@ -78,6 +89,7 @@ public class Employee{
         if (surname != null ? !surname.equals(employee.surname) : employee.surname != null) return false;
         if (email != null ? !email.equals(employee.email) : employee.email != null) return false;
         if (department != employee.department) return false;
+        if (job != null ? !job.equals(employee.job) : employee.job != null) return false;
         return languages != null ? languages.equals(employee.languages) : employee.languages == null;
     }
 
@@ -92,6 +104,7 @@ public class Employee{
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (department != null ? department.hashCode() : 0);
+        result = 31 * result + (job != null ? job.hashCode() : 0);
         result = 31 * result + (languages != null ? languages.hashCode() : 0);
         return result;
     }
@@ -196,5 +209,14 @@ public class Employee{
 
     public static int getTotalEmployeesCounter() {
         return totalEmployeesCounter;
+    }
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        // TODO: check if employee.job.department = employee.department
+        this.job = job;
     }
 }
