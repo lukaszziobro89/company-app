@@ -110,6 +110,11 @@ public class Employee_Test {
                 Collections.singletonList("English"));
     }
 
+    @Test
+    public void TEST_throwDifferentDepartmentTypeExceptionInConstructor(){
+        // TODO: throw DifferentDepartmentTypeException In Constructor
+    }
+
 /**************************************
      SetSalary tests (with exceptions)
 **************************************/
@@ -270,4 +275,19 @@ public class Employee_Test {
         assertEquals(employee.hashCode(), employee1.hashCode());
         assertNotEquals(employee.hashCode(), employee2.hashCode());
     }
+
+/**************************************
+ Set  tests
+ **************************************/
+
+    @Test
+    public void TEST_setJob(){
+        // TODO: setJob test
+    }
+
+    @Test
+    public void TEST_throwDifferentDepartmentTypeExceptionSetJob(){
+        // TODO: test throw exception on setJob
+    }
+
 }
