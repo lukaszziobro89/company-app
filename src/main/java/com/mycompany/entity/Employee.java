@@ -1,9 +1,6 @@
 package com.mycompany.entity;
 
-import com.mycompany.exceptions.AgeException;
-import com.mycompany.exceptions.IncompatibleDepartmentsException;
-import com.mycompany.exceptions.NegativeSalaryException;
-import com.mycompany.exceptions.SalaryNotInRangeException;
+import com.mycompany.exceptions.*;
 
 import java.util.List;
 
@@ -54,7 +51,7 @@ public class Employee{
                 this.job = job;
             } else {
                 // TODO: test throwing exception
-                throw new IncompatibleDepartmentsException("Employees department " + this.department +
+                throw new DifferentDepartmentTypeException("Employees department " + this.department +
                         " is different then job departement " + job.getDepartmentType());
             }
         this.languages = languages;

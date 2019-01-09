@@ -15,4 +15,8 @@ public class FinanceDepartment extends Department {
     public FinanceDepartment(DepartmentType departmentName) {
         super(departmentName);
     }
+
+    public FinanceDepartment(int departmentId, DepartmentType departmentType, List<Job> jobList) {
+        super(departmentId, departmentType, jobList);
+    }
 }

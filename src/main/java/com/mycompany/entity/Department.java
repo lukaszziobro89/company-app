@@ -14,12 +14,21 @@ public abstract class Department {
     private List<Job> jobList = new ArrayList<>();
     private List<Employee> employeesList = new ArrayList<>();
 
-    public Department(DepartmentType departmentName, List<Job> jobList, List<Employee> employeesList) {
+    public Department(DepartmentType departmentName, List<Job> jobs, List<Employee> employeesList) {
         this.departmentId = ID;
         ID += 10;
         this.departmentType = departmentName;
-        // TODO: exception when job.department is different
-        this.jobList = jobList;
+
+            List<Job> jobsConstructor = new ArrayList<>();
+            for (Job job : jobs) {
+                if(this.departmentType.equals(job.getDepartmentType())){
+                    jobsConstructor.add(job);
+                } else{
+                    throw new DifferentDepartmentTypeException("Job department: " + job.getDepartmentType()
+                            + " is different then department type: " + departmentType);
+                }
+                this.jobList = jobsConstructor;
+            }
         this.employeesList = employeesList;
     }
 
@@ -29,8 +38,14 @@ public abstract class Department {
         this.departmentType = departmentName;
     }
 
+    public Department(int departmentId, DepartmentType departmentType, List<Job> jobList) {
+        this.departmentId = departmentId;
+        this.departmentType = departmentType;
+        // TODO: add exception
+        this.jobList = jobList;
+    }
+
     public void addJobToJobList(Job job) throws JobAlreadyInListException, DifferentDepartmentTypeException{
-        // TODO: exception when job.department is different in addJobToJobList method
         if (jobList.contains(job)){
             throw new JobAlreadyInListException
                     ("Job " + job + " already in jobs list for " + this.departmentType + " department.");

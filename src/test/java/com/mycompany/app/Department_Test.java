@@ -65,8 +65,8 @@ public class Department_Test {
                 Arrays.asList("English", "Spanish"));
 
         // TODO: change jobid if implementation changes
-        Job job = new Job(10,"Title", 5000,7000,DepartmentType.Construction);
-        Job job1 = new Job(20,"Title1", 5000,7000,DepartmentType.Construction);
+        Job job = new Job(10,"Title", 5000,7000,DepartmentType.Accounting);
+        Job job1 = new Job(20,"Title1", 5000,7000,DepartmentType.Finance);
 
         Department department = new AccountingDepartment(
                 DepartmentType.Accounting,
@@ -80,6 +80,29 @@ public class Department_Test {
 
         assertEquals(DepartmentType.Accounting, department.getDepartmentType());
         assertEquals(DepartmentType.Finance, department1.getDepartmentType());
+    }
+
+    @Test
+    public void TEST_throwIncompatibleDepartmentsExceptionInConstructor1(){
+        expectedException.expect(DifferentDepartmentTypeException.class);
+        expectedException.expectMessage("Job department: IT_Helpdesk is different then department type: Finance");
+        Employee employee = new Employee(
+                "FirstName",
+                "LastName",
+                33,
+                3000,
+                "mail@mail.com",
+                DepartmentType.Executive,
+                manager,
+                Collections.singletonList("English"));
+        Job itHelpdesk = new Job(20,"IT Helpdesk", 8000,15000, DepartmentType.IT_Helpdesk);
+        Department department2 = new FinanceDepartment(DepartmentType.Finance, Collections.singletonList(itHelpdesk), Collections.singletonList(employee));
+
+    }
+
+    @Test
+    public void TEST_throwIncompatibleDepartmentsExceptionInConstructor2(){
+
     }
 
 /**************************************
