@@ -7,7 +7,7 @@ import com.mycompany.exceptions.JobAlreadyInListException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Department {
+public abstract class Department {
     private static int ID = 10;
     private int departmentId;
     private DepartmentType departmentType;
@@ -18,6 +18,7 @@ public class Department {
         this.departmentId = ID;
         ID += 10;
         this.departmentType = departmentName;
+        // TODO: exception when job.department is different
         this.jobList = jobList;
         this.employeesList = employeesList;
     }
@@ -29,6 +30,7 @@ public class Department {
     }
 
     public void addJobToJobList(Job job) throws JobAlreadyInListException, DifferentDepartmentTypeException{
+        // TODO: exception when job.department is different in addJobToJobList method
         if (jobList.contains(job)){
             throw new JobAlreadyInListException
                     ("Job " + job + " already in jobs list for " + this.departmentType + " department.");
@@ -77,7 +79,8 @@ public class Department {
     }
 
     public void setJobList(List<Job> jobList) {
-        this.jobList = jobList;
+        // TODO: exception when job.department is different in addJobToJobList method
+        // this.jobList = jobList;
     }
 
     public List<Employee> getEmployeeList() {
