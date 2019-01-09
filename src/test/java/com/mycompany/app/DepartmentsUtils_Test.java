@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import com.mycompany.departments.FinanceDepartment;
 import com.mycompany.entity.Department;
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
@@ -14,12 +15,12 @@ import static org.junit.Assert.assertEquals;
 public class DepartmentsUtils_Test {
 
     private DepartmentsUtils departmentsUtils = new DepartmentsUtils();
-    private static Department FinanceDepartment = new Department(DepartmentType.Finance);
+    private static Department FinanceDepartment = new FinanceDepartment(DepartmentType.Finance);
     private static Job executiveManager = new Job(40,"Executive Manager", 18000, 20000,DepartmentType.Executive);
 
     @BeforeClass
     public static void createDepartment(){
-        Department FinanceDepartement = new Department(DepartmentType.Finance);
+        Department FinanceDepartement = new FinanceDepartment(DepartmentType.Finance);
         Employee employee = new Employee("FirstName", "LastName", 33, 3000,
                 "mail@mail.com", DepartmentType.Executive, executiveManager, Collections.singletonList("English"));
         Employee employee1 = new Employee("FirstName1", "LastName1", 34, 4000,
