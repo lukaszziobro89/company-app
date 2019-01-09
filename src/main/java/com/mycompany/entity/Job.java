@@ -36,7 +36,7 @@ public class Job {
             } else{
                 this.maxSalary= maxSalary;
             }
-
+        // TODO: add exception if department is different then job.departement
         this.departmentType = departmentType;
     }
 
@@ -97,6 +97,7 @@ public class Job {
     }
 
     public void setDepartmentType(DepartmentType departmentType) {
+        // TODO: add exception when department type is different
         this.departmentType = departmentType;
     }
 
