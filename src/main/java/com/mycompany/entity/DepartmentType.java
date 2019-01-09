@@ -8,7 +8,7 @@ public enum DepartmentType {
     IT("IT"),
     Public_Relations("Public_Relations"),
     Executive("Executive"),
-    Accounting("Accounting"),
+    Accounting("AccountingDepartment"),
     Payroll("Payroll"),
     Sales("Sales"),
     Finance("Finance"),
