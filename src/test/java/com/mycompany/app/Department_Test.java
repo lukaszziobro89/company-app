@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import com.mycompany.departments.*;
 import com.mycompany.entity.Department;
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
@@ -32,9 +33,9 @@ public class Department_Test {
 
     @Test
     public void TEST_createDepartmentConstructor1(){
-        Department department = new Department(DepartmentType.Construction);
-        Department department1 = new Department(DepartmentType.IT);
-        Department department2 = new Department(DepartmentType.Finance);
+        Department department = new ConstructionDepartment(DepartmentType.Construction);
+        Department department1 = new ITDepartment(DepartmentType.IT);
+        Department department2 = new FinanceDepartment(DepartmentType.Finance);
 
         assertEquals(DepartmentType.Construction, department.getDepartmentType());
         assertEquals(DepartmentType.IT, department1.getDepartmentType());
@@ -67,18 +68,18 @@ public class Department_Test {
         Job job = new Job(10,"Title", 5000,7000,DepartmentType.Construction);
         Job job1 = new Job(20,"Title1", 5000,7000,DepartmentType.Construction);
 
-        Department department = new Department(
+        Department department = new AccountingDepartment(
                 DepartmentType.Accounting,
                 Collections.singletonList(job),
                 Collections.singletonList(employee));
 
-        Department department1 = new Department(
-                DepartmentType.Shareholder_Services,
+        Department department1 = new FinanceDepartment(
+                DepartmentType.Finance,
                 Collections.singletonList(job1),
                 Arrays.asList(employee, employee1));
 
         assertEquals(DepartmentType.Accounting, department.getDepartmentType());
-        assertEquals(DepartmentType.Shareholder_Services, department1.getDepartmentType());
+        assertEquals(DepartmentType.Finance, department1.getDepartmentType());
     }
 
 /**************************************
@@ -90,8 +91,8 @@ public class Department_Test {
         Job constructionJob = new Job(10,"Title", 5000,7000,DepartmentType.Construction);
         Job treasuryJob = new Job(20,"Title1", 5000,7000,DepartmentType.Treasury);
 
-        Department constructionDepartment = new Department(DepartmentType.Construction);
-        Department treasuryDepartment = new Department(DepartmentType.Treasury);
+        Department constructionDepartment = new ConstructionDepartment(DepartmentType.Construction);
+        Department treasuryDepartment = new TreasuryDepartment(DepartmentType.Treasury);
 
         constructionDepartment.addJobToJobList(constructionJob);
         treasuryDepartment.addJobToJobList(treasuryJob);
@@ -102,7 +103,7 @@ public class Department_Test {
 
     @Test
     public void TEST_throwJobAlreadyInListException(){
-        Department constructionDepartment = new Department(DepartmentType.Construction);
+        Department constructionDepartment = new ConstructionDepartment(DepartmentType.Construction);
         Job constructionJob = new Job(10, "construction",4000, 5000,DepartmentType.Construction);
 
         expectedException.expect(JobAlreadyInListException.class);
@@ -114,7 +115,7 @@ public class Department_Test {
 
     @Test
     public void TEST_throwDifferentDepartmentTypeException(){
-        Department payrollDepartment = new Department(DepartmentType.Payroll);
+        Department payrollDepartment = new FinanceDepartment(DepartmentType.Finance);
         Job treasuryJob = new Job(10, "treasury", 4000,5000, DepartmentType.Treasury);
         expectedException.expect(DifferentDepartmentTypeException.class);
         expectedException.expectMessage("Attempt to add job to " + payrollDepartment.getDepartmentType() + " department, when job is assigned to " + treasuryJob.getDepartmentType() + " department");
@@ -127,7 +128,7 @@ public class Department_Test {
 
     @Test
     public void TEST_addSingleEmployeeToEmployeesList(){
-        Department payrollDepartment = new Department(DepartmentType.Payroll);
+        Department payrollDepartment = new FinanceDepartment(DepartmentType.Finance);
         Employee employee = new Employee(
                 "FirstName",
                 "LastName",
@@ -142,7 +143,7 @@ public class Department_Test {
 
     @Test
     public void TEST_throwEmployeeAlreadyInEmployeesListException(){
-        Department payrollDepartment = new Department(DepartmentType.Payroll);
+        Department payrollDepartment = new TreasuryDepartment(DepartmentType.Treasury);
         Employee employee = new Employee(
                 "FirstName",
                 "LastName",
@@ -164,7 +165,7 @@ public class Department_Test {
 
     @Test
     public void TEST_addListOfEmployeesToEmployeeList(){
-        Department department = new Department(DepartmentType.Construction);
+        Department department = new ConstructionDepartment(DepartmentType.Construction);
         Employee employee = new Employee(
                 "FirstName",
                 "LastName",
@@ -196,7 +197,7 @@ public class Department_Test {
 
     @Test
     public void TEST_throwEmployeeAlreadyInEmployeesListExceptionAddListOfEmployeesToEmployeeList(){
-        Department department = new Department(DepartmentType.Construction);
+        Department department = new ConstructionDepartment(DepartmentType.Construction);
         Employee employee = new Employee(
                 "FirstName",
                 "LastName",
