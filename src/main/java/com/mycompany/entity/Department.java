@@ -38,11 +38,20 @@ public abstract class Department {
         this.departmentType = departmentName;
     }
 
-    public Department(int departmentId, DepartmentType departmentType, List<Job> jobList) {
+    public Department(int departmentId, DepartmentType departmentType, List<Job> jobs) {
         this.departmentId = departmentId;
         this.departmentType = departmentType;
-        // TODO: add exception
-        this.jobList = jobList;
+
+        List<Job> jobsConstructor = new ArrayList<>();
+            for (Job job : jobs) {
+                if (this.departmentType.equals(job.getDepartmentType())) {
+                    jobsConstructor.add(job);
+                } else {
+                    throw new DifferentDepartmentTypeException("Job department: " + job.getDepartmentType()
+                            + " is different then department type: " + departmentType);
+                }
+                this.jobList = jobsConstructor;
+            }
     }
 
     public void addJobToJobList(Job job) throws JobAlreadyInListException, DifferentDepartmentTypeException{
