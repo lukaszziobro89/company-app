@@ -50,7 +50,6 @@ public class Employee{
             if (this.getDepartment().equals(job.getDepartmentType())) {
                 this.job = job;
             } else {
-                // TODO: test throwing exception
                 throw new DifferentDepartmentTypeException("Employees department " + this.department +
                         " is different then job departement " + job.getDepartmentType());
             }
