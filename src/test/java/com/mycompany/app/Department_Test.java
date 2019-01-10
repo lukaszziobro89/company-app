@@ -83,7 +83,7 @@ public class Department_Test {
     }
 
     @Test
-    public void TEST_throwIncompatibleDepartmentsExceptionInConstructor1(){
+    public void TEST_throwDifferentDepartmentTypeExceptionInConstructor1(){
         expectedException.expect(DifferentDepartmentTypeException.class);
         expectedException.expectMessage("Job department: IT_Helpdesk is different then department type: Finance");
         Employee employee = new Employee(
@@ -97,11 +97,6 @@ public class Department_Test {
                 Collections.singletonList("English"));
         Job itHelpdesk = new Job(20,"IT Helpdesk", 8000,15000, DepartmentType.IT_Helpdesk);
         Department department2 = new FinanceDepartment(DepartmentType.Finance, Collections.singletonList(itHelpdesk), Collections.singletonList(employee));
-
-    }
-
-    @Test
-    public void TEST_throwIncompatibleDepartmentsExceptionInConstructor2(){
 
     }
 
