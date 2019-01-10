@@ -4,6 +4,7 @@ import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
 import com.mycompany.entity.Job;
 import com.mycompany.exceptions.AgeException;
+import com.mycompany.exceptions.DifferentDepartmentTypeException;
 import com.mycompany.exceptions.NegativeSalaryException;
 import com.mycompany.exceptions.SalaryNotInRangeException;
 import org.junit.Rule;
@@ -112,7 +113,17 @@ public class Employee_Test {
 
     @Test
     public void TEST_throwDifferentDepartmentTypeExceptionInConstructor(){
-        // TODO: throw DifferentDepartmentTypeException In Constructor
+        expectedException.expect(DifferentDepartmentTypeException.class);
+        expectedException.expectMessage("Employees department IT is different then job departement Executive");
+        Employee employee = new Employee(
+                "TestName",
+                "TestSurname",
+                23,
+                20000,
+                "mail@mail.com",
+                DepartmentType.IT,
+                executive,
+                Collections.singletonList("English"));
     }
 
 /**************************************
