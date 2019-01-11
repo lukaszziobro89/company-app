@@ -1,5 +1,6 @@
 package com.mycompany.entity;
 
+import com.mycompany.exceptions.DifferentDepartmentTypeException;
 import com.mycompany.exceptions.NegativeSalaryException;
 import com.mycompany.exceptions.SalaryNotInRangeException;
 
@@ -36,8 +37,6 @@ public class Job {
             } else{
                 this.maxSalary= maxSalary;
             }
-        // TODO: add exception if department is different then job.departement
-        this.departmentType = departmentType;
     }
 
     public int getJobId() {
