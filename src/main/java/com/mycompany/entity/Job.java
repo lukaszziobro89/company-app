@@ -1,6 +1,6 @@
 package com.mycompany.entity;
 
-import com.mycompany.exceptions.DifferentDepartmentTypeException;
+
 import com.mycompany.exceptions.NegativeSalaryException;
 import com.mycompany.exceptions.SalaryNotInRangeException;
 
@@ -96,7 +96,6 @@ public class Job {
     }
 
     public void setDepartmentType(DepartmentType departmentType) {
-        // TODO: add exception when department type is different
         this.departmentType = departmentType;
     }
 
