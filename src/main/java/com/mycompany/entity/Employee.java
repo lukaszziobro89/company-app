@@ -212,7 +212,11 @@ public class Employee{
     }
 
     public void setJob(Job job) {
-        // TODO: check if employee.job.department = employee.department
-        this.job = job;
+        if (this.getDepartment().equals(job.getDepartmentType())) {
+            this.job = job;
+        } else {
+            throw new DifferentDepartmentTypeException("Employees department " + this.department +
+                    " is different then job departement " + job.getDepartmentType());
+        }
     }
 }
