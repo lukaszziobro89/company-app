@@ -65,7 +65,6 @@ public class Department_Test {
                 itHelpdesk,
                 Arrays.asList("English", "Spanish"));
 
-        // TODO: change jobid if implementation changes
         Job job = new Job(10,"Title", 5000,7000,DepartmentType.Accounting);
         Job job1 = new Job(20,"Title1", 5000,7000,DepartmentType.Finance);
 
