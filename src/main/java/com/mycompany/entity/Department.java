@@ -102,9 +102,17 @@ public abstract class Department {
         return jobList;
     }
 
-    public void setJobList(List<Job> jobList) {
-        // TODO: exception when job.department is different in addJobToJobList method
-        // this.jobList = jobList;
+    public void setJobList(List<Job> jobs) {
+        List<Job> jobsConstructor = new ArrayList<>();
+        for (Job job : jobs) {
+            if(this.departmentType.equals(job.getDepartmentType())){
+                jobsConstructor.add(job);
+            } else{
+                throw new DifferentDepartmentTypeException("Job department: " + job.getDepartmentType()
+                        + " is different then department type: " + departmentType);
+            }
+            this.jobList = jobsConstructor;
+        }
     }
 
     public List<Employee> getEmployeeList() {
