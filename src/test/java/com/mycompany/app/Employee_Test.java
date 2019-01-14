@@ -311,7 +311,23 @@ public class Employee_Test {
 
     @Test
     public void TEST_throwDifferentDepartmentTypeExceptionSetJob(){
+        Employee employee = new Employee(
+                "FirstName",
+                "LastName",
+                25,
+                5000,
+                "email@email.com",
+                DepartmentType.Executive,
+                executive,
+                Arrays.asList("English", "Spanish")
+        );
 
+        Job financeJob = new Job(101, "Finance job", 10000,20000, DepartmentType.Finance);
+
+        expectedException.expect(DifferentDepartmentTypeException.class);
+        expectedException.expectMessage("Employees department Executive is different then job department Finance");
+
+        employee.setJob(financeJob);
     }
 
 }
