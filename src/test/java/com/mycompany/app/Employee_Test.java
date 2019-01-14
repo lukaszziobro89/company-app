@@ -293,12 +293,25 @@ public class Employee_Test {
 
     @Test
     public void TEST_setJob(){
-        // TODO: setJob test
+        Employee employee = new Employee(
+                "FirstName",
+                "LastName",
+                25,
+                5000,
+                "email@email.com",
+                DepartmentType.Executive,
+                executive,
+                Arrays.asList("English", "Spanish")
+        );
+
+        Job newExecutiveJob = new Job(101, "Executive director", 10000,20000, DepartmentType.Executive);
+
+        employee.setJob(newExecutiveJob);
     }
 
     @Test
     public void TEST_throwDifferentDepartmentTypeExceptionSetJob(){
-        // TODO: test throw exception on setJob
+
     }
 
 }
