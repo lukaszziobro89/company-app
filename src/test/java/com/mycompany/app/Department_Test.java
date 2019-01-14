@@ -237,4 +237,22 @@ public class Department_Test {
         department.addEmployeeToEmployeesList(employees);
     }
 
+/**************************************
+Add employee to employees list tests
+**************************************/
+
+    @Test
+    public void TEST_setJobList(){
+        Job javaDeveloper = new Job(20,"Java Developer", 10000,15000, DepartmentType.IT);
+        Job phpDeveloper = new Job(20,"PHP Developer", 10000,15000, DepartmentType.IT);
+        Department itDepartment = new ITDepartment(DepartmentType.IT);
+        itDepartment.setJobList(Arrays.asList(javaDeveloper, phpDeveloper));
+    }
+
+//    @Test
+//    public void TEST_throwDifferentDepartmentTypeExceptionInSetJobList(){
+//         todo
+//    }
+
+
 }
