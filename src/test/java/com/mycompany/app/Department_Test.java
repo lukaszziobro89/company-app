@@ -15,6 +15,7 @@ import org.junit.rules.ExpectedException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -244,15 +245,21 @@ Add employee to employees list tests
     @Test
     public void TEST_setJobList(){
         Job javaDeveloper = new Job(20,"Java Developer", 10000,15000, DepartmentType.IT);
-        Job phpDeveloper = new Job(20,"PHP Developer", 10000,15000, DepartmentType.IT);
+        Job phpDeveloper = new Job(30,"PHP Developer", 10000,15000, DepartmentType.IT);
         Department itDepartment = new ITDepartment(DepartmentType.IT);
         itDepartment.setJobList(Arrays.asList(javaDeveloper, phpDeveloper));
     }
 
-//    @Test
-//    public void TEST_throwDifferentDepartmentTypeExceptionInSetJobList(){
-//         todo
-//    }
+    @Test
+    public void TEST_throwDifferentDepartmentTypeExceptionInSetJobList(){
+        Department itDepartment = new ITDepartment(DepartmentType.IT);
+        Job javaDeveloper = new Job(20,"Java Developer", 10000,15000, DepartmentType.IT);
+        Job financeManager = new Job(30,"Finance manager", 10000,15000, DepartmentType.Finance);
+        List<Job> jobs = Arrays.asList(javaDeveloper,financeManager);
+        expectedException.expect(DifferentDepartmentTypeException.class);
+        expectedException.expectMessage("Job department: Finance is different then department type: IT");
+        itDepartment.setJobList(Arrays.asList(javaDeveloper, financeManager));
+    }
 
 
 }
