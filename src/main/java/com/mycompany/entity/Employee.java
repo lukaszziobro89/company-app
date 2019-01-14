@@ -216,7 +216,7 @@ public class Employee{
             this.job = job;
         } else {
             throw new DifferentDepartmentTypeException("Employees department " + this.department +
-                    " is different then job departement " + job.getDepartmentType());
+                    " is different then job department " + job.getDepartmentType());
         }
     }
 }
