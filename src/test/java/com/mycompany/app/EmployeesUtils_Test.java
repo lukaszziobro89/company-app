@@ -23,7 +23,7 @@ public class EmployeesUtils_Test {
 
     @BeforeClass
     public static void createDepartment(){
-        Department marketingDepartment = new FinanceDepartment(DepartmentType.Finance);
+        Department marketingDepartment = new FinanceDepartment(DepartmentType.Marketing);
         Employee employee = new Employee("FirstName", "LastName", 33, 3000,
                 "mail@mail.com", DepartmentType.Executive, executiveDirector,  Arrays.asList("English","Spanish"));
         Employee employee1 = new Employee("FirstName1", "LastName1", 34, 4000,
