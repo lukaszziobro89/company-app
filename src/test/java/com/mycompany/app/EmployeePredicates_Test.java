@@ -19,14 +19,14 @@ import static org.junit.Assert.assertEquals;
 
 public class EmployeePredicates_Test {
 
-    private EmployeePredicates employeePredicates = new EmployeePredicates();
     private static Department FinanceDepartment = new ITDepartment(DepartmentType.Finance);
-    private static Job financeJob = new Job(10, "Java Developer", 10000, 15000,DepartmentType.Finance);
 
     @BeforeClass
     public static void createDepartment(){
         Department FinanceDepartement = new FinanceDepartment(DepartmentType.Finance);
+
         Job financeExecutiveManager = new Job(40,"Executive Manager", 18000, 20000,DepartmentType.Finance);
+
         Employee employee = new Employee("FirstName", "LastName", 33, 3000,
                 "mail@mail.com", DepartmentType.Finance, financeExecutiveManager, Collections.singletonList("English"));
         Employee employee1 = new Employee("FirstName1", "LastName1", 34, 4000,
