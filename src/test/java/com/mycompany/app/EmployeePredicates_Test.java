@@ -8,12 +8,18 @@ import com.mycompany.entity.Employee;
 import com.mycompany.entity.Job;
 import com.mycompany.utils.EmployeePredicates;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+
+import static com.mycompany.utils.EmployeePredicates.*;
+import static org.junit.Assert.assertEquals;
 
 public class EmployeePredicates_Test {
 
-    private EmployeePredicates employeePredicates;
+    private EmployeePredicates employeePredicates = new EmployeePredicates();
     private static Department FinanceDepartment = new ITDepartment(DepartmentType.Finance);
     private static Job financeJob = new Job(10, "Java Developer", 10000, 15000,DepartmentType.Finance);
 
@@ -42,4 +48,17 @@ public class EmployeePredicates_Test {
         FinanceDepartment = FinanceDepartement;
     }
 
+    @Test
+    public void TEST_isAgeMoreThen(){
+        List<Employee> employeesAfter35 = Arrays.asList(
+                FinanceDepartment.getEmployeeList().get(3),
+                FinanceDepartment.getEmployeeList().get(4),
+                FinanceDepartment.getEmployeeList().get(5)
+        );
+
+        List<Employee> assertEmployees = filterEmployees(FinanceDepartment.getEmployeeList(), isAgeMoreThen(35)
+        );
+
+        assertEquals(employeesAfter35, assertEmployees);
+    }
 }
