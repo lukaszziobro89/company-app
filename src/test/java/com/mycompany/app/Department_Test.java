@@ -146,39 +146,41 @@ public class Department_Test {
 
     @Test
     public void TEST_addSingleEmployeeToEmployeesList(){
-        Department payrollDepartment = new FinanceDepartment(DepartmentType.Finance);
+        Department payrollDepartment = new FinanceDepartment(DepartmentType.Payroll);
+        Job payrollJob = new Job(40,"Payroll Manager", 5000, 7000, DepartmentType.Payroll);
         Employee employee = new Employee(
                 "FirstName",
                 "LastName",
                 33,
                 3000,
                 "mail@mail.com",
-                DepartmentType.Executive,
-                manager,
+                DepartmentType.Payroll,
+                payrollJob,
                 Collections.singletonList("English"));
         payrollDepartment.addEmployeeToEmployeesList(employee);
     }
 
     @Test
     public void TEST_throwEmployeeAlreadyInEmployeesListException(){
-        Department payrollDepartment = new TreasuryDepartment(DepartmentType.Treasury);
+        Department treasuryDepartment = new TreasuryDepartment(DepartmentType.Treasury);
+        Job treasuryManager = new Job(20,"Treasury Manager", 5000, 7000, DepartmentType.Treasury);
         Employee employee = new Employee(
                 "FirstName",
                 "LastName",
                 33,
                 3000,
                 "mail@mail.com",
-                DepartmentType.Executive,
-                manager,
+                DepartmentType.Treasury,
+                treasuryManager,
                 Collections.singletonList("English"));
-        payrollDepartment.addEmployeeToEmployeesList(employee);
+        treasuryDepartment.addEmployeeToEmployeesList(employee);
 
-        assertTrue(payrollDepartment.getEmployeeList().contains(employee));
+        assertTrue(treasuryDepartment.getEmployeeList().contains(employee));
         expectedException.expect(EmployeeAlreadyInEmployeesListException.class);
         expectedException.expectMessage("Employee Employee{id=0, name='FirstName', " +
                 "surname='LastName', age=33, salary=3000.0, email='mail@mail.com', " +
-                "department=Executive, job=Manager, languages=[English]} is already in employees list.");
-        payrollDepartment.addEmployeeToEmployeesList(employee);
+                "department=Treasury, job=Treasury Manager, languages=[English]} is already in employees list.");
+        treasuryDepartment.addEmployeeToEmployeesList(employee);
     }
 
     @Test
