@@ -16,23 +16,23 @@ public class DepartmentsUtils_Test {
 
     private DepartmentsUtils departmentsUtils = new DepartmentsUtils();
     private static Department FinanceDepartment = new FinanceDepartment(DepartmentType.Finance);
-    private static Job executiveManager = new Job(40,"Executive Manager", 18000, 20000,DepartmentType.Executive);
+    private static Job executiveManager = new Job(40,"Executive Manager", 18000, 20000,DepartmentType.Finance);
 
     @BeforeClass
     public static void createDepartment(){
         Department FinanceDepartement = new FinanceDepartment(DepartmentType.Finance);
         Employee employee = new Employee("FirstName", "LastName", 33, 3000,
-                "mail@mail.com", DepartmentType.Executive, executiveManager, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Finance, executiveManager, Collections.singletonList("English"));
         Employee employee1 = new Employee("FirstName1", "LastName1", 34, 4000,
-                "mail@mail.com", DepartmentType.Executive, executiveManager, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Finance, executiveManager, Collections.singletonList("English"));
         Employee employee2 = new Employee("FirstName2", "LastName2", 35, 5000,
-                "mail@mail.com", DepartmentType.Executive, executiveManager, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Finance, executiveManager, Collections.singletonList("English"));
         Employee employee3 = new Employee("FirstName3", "LastName3", 36, 6000,
-                "mail@mail.com", DepartmentType.Executive, executiveManager, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Finance, executiveManager, Collections.singletonList("English"));
         Employee employee4 = new Employee("FirstName4", "LastName4", 37, 7000,
-                "mail@mail.com", DepartmentType.Executive, executiveManager, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Finance, executiveManager, Collections.singletonList("English"));
         Employee employee5 = new Employee("FirstName5", "LastName5", 38, 8000,
-                "mail@mail.com", DepartmentType.Executive, executiveManager, Collections.singletonList("English"));
+                "mail@mail.com", DepartmentType.Finance, executiveManager, Collections.singletonList("English"));
         FinanceDepartement.addEmployeeToEmployeesList(employee);
         FinanceDepartement.addEmployeeToEmployeesList(employee1);
         FinanceDepartement.addEmployeeToEmployeesList(employee2);
