@@ -14,5 +14,9 @@ public class EmployeePredicates {
                 .collect(Collectors.toList());
     }
 
+    public static Predicate<Employee> isAgeMoreThen(Integer age){
+        return emp -> emp.getAge() > age;
+    }
+
 
 }
