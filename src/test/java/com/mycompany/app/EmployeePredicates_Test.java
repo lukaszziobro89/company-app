@@ -22,10 +22,10 @@ public class EmployeePredicates_Test {
     private static Department FinanceDepartment = new ITDepartment(DepartmentType.Finance);
 
     @BeforeClass
-    public static void createDepartment(){
+    public static void createDepartment() {
         Department FinanceDepartement = new FinanceDepartment(DepartmentType.Finance);
 
-        Job financeExecutiveManager = new Job(40,"Executive Manager", 18000, 20000,DepartmentType.Finance);
+        Job financeExecutiveManager = new Job(40, "Executive Manager", 18000, 20000, DepartmentType.Finance);
 
         Employee employee = new Employee("FirstName", "LastName", 33, 3000,
                 "mail@mail.com", DepartmentType.Finance, financeExecutiveManager, Collections.singletonList("English"));
@@ -49,16 +49,28 @@ public class EmployeePredicates_Test {
     }
 
     @Test
-    public void TEST_isAgeMoreThen(){
+    public void TEST_isAgeMoreThen() {
         List<Employee> employeesAfter35 = Arrays.asList(
                 FinanceDepartment.getEmployeeList().get(3),
                 FinanceDepartment.getEmployeeList().get(4),
                 FinanceDepartment.getEmployeeList().get(5)
         );
 
-        List<Employee> assertEmployees = filterEmployees(FinanceDepartment.getEmployeeList(), isAgeMoreThen(35)
-        );
+        List<Employee> assertEmployees = filterEmployees(FinanceDepartment.getEmployeeList(), isAgeMoreThen(35));
 
         assertEquals(employeesAfter35, assertEmployees);
     }
+
+    @Test
+    public void TEST_isBeforeAgeAndSalaryUnder() {
+        List<Employee> before36andUnder5000 = Arrays.asList(
+                FinanceDepartment.getEmployeeList().get(0),
+                FinanceDepartment.getEmployeeList().get(1));
+
+        List<Employee> assertEmployeesList = filterEmployees(
+                FinanceDepartment.getEmployeeList(), isBeforeAgeAndSalaryUnder(36, 5000));
+
+        assertEquals(before36andUnder5000, assertEmployeesList);
+    }
+
 }
