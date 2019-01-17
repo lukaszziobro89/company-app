@@ -96,11 +96,18 @@ public class EmployeePredicates_Test {
         assertEquals(over35Under7000, assertEmployeesList);
     }
 
-//    @Test
-//    public void TEST_isOverAgeAndSalaryOver(){
-//
-//    }
+    @Test
+    public void TEST_isOverAgeAndSalaryOver(){
+        List<Employee> over36Over6000 = Arrays.asList(
+                FinanceDepartment.getEmployeeList().get(4),
+                FinanceDepartment.getEmployeeList().get(5)
+        );
 
+        List<Employee> assertEmployeesList = filterEmployees(
+                FinanceDepartment.getEmployeeList(), isOverAgeAndSalaryOver(36,6000)
+        );
 
+        assertEquals(over36Over6000,assertEmployeesList);
+    }
 
 }
