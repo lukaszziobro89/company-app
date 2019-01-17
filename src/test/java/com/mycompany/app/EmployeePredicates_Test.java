@@ -85,4 +85,22 @@ public class EmployeePredicates_Test {
         assertEquals(before36andUnder3000, assertEmployeesList);
     }
 
+    @Test
+    public void TEST_isOverAgeAndSalaryUnder(){
+        List<Employee> over35Under7000 = Collections.singletonList(FinanceDepartment.getEmployeeList().get(3));
+
+        List<Employee> assertEmployeesList = filterEmployees(
+                FinanceDepartment.getEmployeeList(), isOverAgeAndSalaryUnder(35,7000)
+        );
+
+        assertEquals(over35Under7000, assertEmployeesList);
+    }
+
+//    @Test
+//    public void TEST_isOverAgeAndSalaryOver(){
+//
+//    }
+
+
+
 }
