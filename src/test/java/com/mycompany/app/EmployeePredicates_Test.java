@@ -12,6 +12,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static com.mycompany.utils.EmployeePredicates.*;
 import static org.junit.Assert.assertEquals;
@@ -122,4 +123,29 @@ public class EmployeePredicates_Test {
 
         assertEquals(over34Under37, assertEmployeesList);
     }
+
+    @Test
+    public void TEST_hasSalaryUnder(){
+        List<Employee> salaryUnder6000 = Arrays.asList(
+                FinanceDepartment.getEmployeeList().get(0),
+                FinanceDepartment.getEmployeeList().get(1),
+                FinanceDepartment.getEmployeeList().get(2)
+        );
+
+        List<Employee> assertEmployeesList = filterEmployees(
+                FinanceDepartment.getEmployeeList(), hasSalaryUnder(6000)
+        );
+
+        assertEquals(salaryUnder6000, assertEmployeesList);
+    }
+//
+//    @Test
+//    public static Predicate<Employee> TEST_hasSalaryOver(int salary){
+//
+//    }
+//
+//    @Test
+//    public static Predicate<Employee> TEST_haveSalariesBetween(int lowerSalary, int upperSalary){
+//
+//    }
 }
