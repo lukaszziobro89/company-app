@@ -6,7 +6,6 @@ import com.mycompany.entity.Department;
 import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
 import com.mycompany.entity.Job;
-import com.mycompany.utils.EmployeePredicates;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
