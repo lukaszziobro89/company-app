@@ -109,4 +109,17 @@ public class EmployeePredicates_Test {
         assertEquals(over36Over6000,assertEmployeesList);
     }
 
+    @Test
+    public void TEST_isBetweenAges(){
+        List<Employee> over34Under37 = Arrays.asList(
+                FinanceDepartment.getEmployeeList().get(2),
+                FinanceDepartment.getEmployeeList().get(3)
+        );
+
+        List<Employee> assertEmployeesList = filterEmployees(
+                FinanceDepartment.getEmployeeList(), isBetweenAges(34,37)
+        );
+
+        assertEquals(over34Under37, assertEmployeesList);
+    }
 }
