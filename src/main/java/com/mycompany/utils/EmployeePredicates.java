@@ -41,4 +41,10 @@ public class EmployeePredicates {
         Predicate<Employee> salaryOver = employee -> employee.getSalary() > salary;
         return isOverAge.and(salaryOver);
     }
+
+    public static Predicate<Employee> isBetweenAges(int lowerAge, int greaterAge){
+        Predicate<Employee> isOverAge = employee -> employee.getAge() > lowerAge;
+        Predicate<Employee> isUnderAge = employee -> employee.getAge() < greaterAge;
+        return isOverAge.and(isUnderAge);
+    }
 }
