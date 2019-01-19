@@ -153,8 +153,17 @@ public class EmployeePredicates_Test {
         assertEquals(salaryOver6000, assertEmployeesList);
     }
 
-//    @Test
-//    public void TEST_haveSalariesBetween(){
-//
-//    }
+    @Test
+    public void TEST_haveSalariesBetween(){
+        List<Employee> salaryOver4000Under7000 = Arrays.asList(
+                FinanceDepartment.getEmployeeList().get(2),
+                FinanceDepartment.getEmployeeList().get(3)
+        );
+
+        List<Employee> assertEmployeesList = filterEmployees(
+                FinanceDepartment.getEmployeeList(), haveSalariesBetween(4000,7000)
+        );
+
+        assertEquals(salaryOver4000Under7000, assertEmployeesList);
+    }
 }
