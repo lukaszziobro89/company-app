@@ -12,7 +12,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 
 import static com.mycompany.utils.EmployeePredicates.*;
 import static org.junit.Assert.assertEquals;
