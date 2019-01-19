@@ -8,10 +8,12 @@ import com.mycompany.entity.DepartmentType;
 import com.mycompany.entity.Employee;
 import com.mycompany.entity.Job;
 import com.mycompany.utils.DepartmentsUtils;
+import com.mycompany.utils.EmployeePredicates;
 import com.mycompany.utils.EmployeesUtils;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static com.mycompany.entity.DepartmentType.Accounting;
 
@@ -55,6 +57,5 @@ public class App {
         EmployeesUtils employeesUtils = new EmployeesUtils();
         System.out.println("Number of employees with English in Finance: " + employeesUtils.countEmployeesWithLanguage(finance, "English"));
         System.out.println("Number of employees with German in AccountingDepartment: " + employeesUtils.countEmployeesWithLanguage(accounting, "German"));
-
     }
 }
