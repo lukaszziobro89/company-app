@@ -52,10 +52,10 @@ public class EmployeePredicates {
         return employee -> employee.getSalary() < salary;
     }
 
-//    public static Predicate<Employee> hasSalaryOver(int salary){
-//
-//    }
-//
+    public static Predicate<Employee> hasSalaryOver(int salary){
+        return employee -> employee.getSalary() > salary;
+    }
+
 //    public static Predicate<Employee> haveSalariesBetween(int lowerSalary, int upperSalary){
 //
 //    }
