@@ -56,7 +56,9 @@ public class EmployeePredicates {
         return employee -> employee.getSalary() > salary;
     }
 
-//    public static Predicate<Employee> haveSalariesBetween(int lowerSalary, int upperSalary){
-//
-//    }
+    public static Predicate<Employee> haveSalariesBetween(int lowerSalary, int upperSalary){
+        Predicate<Employee> isOverSalary = employee -> employee.getSalary() > lowerSalary;
+        Predicate<Employee> isUnderSalary = employee -> employee.getSalary() < upperSalary;
+        return isOverSalary.and(isUnderSalary);
+    }
 }
