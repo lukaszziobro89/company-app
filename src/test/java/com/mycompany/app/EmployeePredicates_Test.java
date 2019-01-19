@@ -138,14 +138,23 @@ public class EmployeePredicates_Test {
 
         assertEquals(salaryUnder6000, assertEmployeesList);
     }
-//
+
+    @Test
+    public void TEST_hasSalaryOver(){
+        List<Employee> salaryOver6000 = Arrays.asList(
+                FinanceDepartment.getEmployeeList().get(4),
+                FinanceDepartment.getEmployeeList().get(5)
+        );
+
+        List<Employee> assertEmployeesList = filterEmployees(
+                FinanceDepartment.getEmployeeList(), hasSalaryOver(6000)
+        );
+
+        assertEquals(salaryOver6000, assertEmployeesList);
+    }
+
 //    @Test
-//    public static Predicate<Employee> TEST_hasSalaryOver(int salary){
-//
-//    }
-//
-//    @Test
-//    public static Predicate<Employee> TEST_haveSalariesBetween(int lowerSalary, int upperSalary){
+//    public void TEST_haveSalariesBetween(){
 //
 //    }
 }
